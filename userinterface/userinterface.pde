@@ -31,9 +31,9 @@ void setup() {
   asi = loadImage("asi.png");
   out = loadImage("outline.png");
 
-  bold36 = createFont("SourceSansPro-Bold", 36);
-  light18 = createFont("SourceSansPro-Light", 18);
-  light24 = createFont("SourceSansPro-Light", 24);
+  bold36 = loadFont("SourceSansPro-Bold-36.vlw");
+  light18 = loadFont("SourceSansPro-Light-18.vlw");
+  light24 = loadFont("SourceSansPro-Light-24.vlw");
 
   menuSize = new PVector(250, 70);
 
@@ -76,7 +76,7 @@ void draw() {
 
   buff.beginDraw();
   buff.image(afr, 0, 0);
-  buff.tint(0, 250, 250);
+  buff.tint(0, 255, 255);
   buff.endDraw();
   image(buff, 0, 0);
   buff.clear();
@@ -228,12 +228,12 @@ void drawStatsOpt(int x, int y, String headline, String subtext) {
   textSize(36);
   textFont(bold36);
   textAlign(LEFT, TOP);
-  text(headline, 10, -5);
+  text(headline, 10, 5);
 
   textSize(18);
   textFont(light18);
   textAlign(LEFT, TOP);
-  text(subtext, 10, 30);
+  text(subtext, 10, 35);
 
   popMatrix();
   popStyle();
