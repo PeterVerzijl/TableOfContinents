@@ -5,7 +5,8 @@ PImage barright;
 PFont bold36; // Stats head
 PFont light18; //Stats sub
 PFont light24; // Menu unselected
-PVector p, s;
+PVector menuSize;
+menuOpt[] menuOpts = new menuOpt[12];
 
 void setup() {
   size(1280, 720);
@@ -18,11 +19,26 @@ void setup() {
   light18 = createFont("SourceSansPro-Light", 18);
   light24 = createFont("SourceSansPro-Light", 24);
   
-  p = new PVector(width/2, height/2);
-  s = new PVector(200, 200);
+  menuSize = new PVector(250, 70);
+  
+  int y = 250;
+  int dy = 70;
+
+  menuOpts[0] = new menuOpt(y+dy*0, "CIGARETTES", false, false);
+  menuOpts[1] = new menuOpt(y+dy*1, "AMPHETAMINE", false, false);
+  menuOpts[2] = new menuOpt(y+dy*2, "OPIATES", false, true);
+  menuOpts[3] = new menuOpt(y+dy*3, "COCAINE", false, false);
+  menuOpts[4] = new menuOpt(y+dy*4, "ECSTACY", false, false);
+  menuOpts[5] = new menuOpt(y+dy*5, "CANNABIS", false, false);
+
+  menuOpts[6] = new menuOpt(y+dy*0, "SEXLIFE SATISFACTION", true, false);
+  menuOpts[7] = new menuOpt(y+dy*1, "UFO SIGHTINGS", true, false);
+  menuOpts[8] = new menuOpt(y+dy*2, "HOMICIDE RATE", true, false);
+  menuOpts[9] = new menuOpt(y+dy*3, "DRUG RELATED DEATHS", true, false);
+  menuOpts[10] = new menuOpt(y+dy*4, "GDP PER CAPITA", true, true);
+  menuOpts[11] = new menuOpt(y+dy*5, "OVERWEIGHT", true, false);
+  
 }
-
-
 
 void draw() {
   image(bg, 0, 0);
@@ -31,15 +47,30 @@ void draw() {
   drawStats();
   drawMenu();
   drawInfo();
+  
   noFill();
   stroke(255,0, 0);
   strokeWeight(1);
-  rect(p.x, p.y, s.x, s.y);
+  for(int i = 0; i < menuOpts.length; i++){
+    float x = menuOpts[i].rightside ? width-menuSize.x : 0;
+    //rect(x, menuOpts[i].y-50, menuSize.x, menuSize.y);
+  }
 }
 
 void mousePressed(){
-  PVector m = new PVector(mouseX, mouseY);
-  println(pointInRect(m,p,s));
+  PVector m = new PVector(mouseX, mouseY+50);
+  //println(pointInRect(m,p, menuSize));
+  
+  for(int i = 0; i < menuOpts.length; i++){
+    menuOpt mo = menuOpts[i];
+    PVector pos = (mo.rightside) ? new PVector(width-menuSize.x, mo.y) : new PVector(0, mo.y);
+    boolean hit = pointInRect(m, pos, menuSize);
+    if(hit) {
+       for(int j = 0; j < menuOpts.length; j++) if(menuOpts[j].rightside == mo.rightside) menuOpts[j].selected = false;
+       mo.selected = true;
+    }
+  }
+  
 }
 
 boolean pointInRect(PVector p, PVector pos, PVector size){
@@ -74,22 +105,7 @@ void drawInfo() {
 void drawMenu() {
   drawStatsOpt(0, 100, "DRUG USE", "PER CAPITA");
 
-  int y = 250;
-  int dy = 70;
-
-  drawMenuOpt(y+dy*0, "CIGARETTES", false, false);
-  drawMenuOpt(y+dy*1, "AMPHETAMINE", false, false);
-  drawMenuOpt(y+dy*2, "OPIATES", false, true);
-  drawMenuOpt(y+dy*3, "COCAINE", false, false);
-  drawMenuOpt(y+dy*4, "ECSTACY", false, false);
-  drawMenuOpt(y+dy*5, "CANNABIS", false, false);
-
-  drawMenuOpt(y+dy*0, "SEXLIFE SATISFACTION", true, false);
-  drawMenuOpt(y+dy*1, "UFO SIGHTINGS", true, false);
-  drawMenuOpt(y+dy*2, "HOMICIDE RATE", true, false);
-  drawMenuOpt(y+dy*3, "DRUG RELATED DEATHS", true, false);
-  drawMenuOpt(y+dy*4, "GDP PER CAPITA", true, true);
-  drawMenuOpt(y+dy*5, "OVERWEIGHT", true, false);
+ for(int i = 0; i < menuOpts.length; i++) menuOpts[i].update();
 }
 
 void drawMenuOpt(int y, String text, boolean rightside, boolean selected) {
