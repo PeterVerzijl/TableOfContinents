@@ -18,9 +18,9 @@ void setup() {
   bold36 = createFont("SourceSansPro-Bold", 36);
   light18 = createFont("SourceSansPro-Light", 18);
   light24 = createFont("SourceSansPro-Light", 24);
-  
+
   menuSize = new PVector(250, 70);
-  
+
   int y = 250;
   int dy = 70;
 
@@ -37,7 +37,10 @@ void setup() {
   menuOpts[9] = new menuOpt(y+dy*3, "DRUG RELATED DEATHS", true, false);
   menuOpts[10] = new menuOpt(y+dy*4, "GDP PER CAPITA", true, true);
   menuOpts[11] = new menuOpt(y+dy*5, "OVERWEIGHT", true, false);
-  
+
+  DataLoader dl = new DataLoader();
+  dl.load("data.csv");
+  dl.printData();
 }
 
 void draw() {
@@ -47,7 +50,7 @@ void draw() {
   drawStats();
   drawMenu();
   drawInfo();
-  
+
   noFill();
   stroke(255,0, 0);
   strokeWeight(1);
@@ -62,7 +65,7 @@ void draw() {
 void mousePressed(){
   PVector m = new PVector(mouseX, mouseY+50);
   //println(pointInRect(m,p, menuSize));
-  
+
   for(int i = 0; i < menuOpts.length; i++){
     menuOpt mo = menuOpts[i];
     PVector pos = (mo.rightside) ? new PVector(width-menuSize.x, mo.y) : new PVector(0, mo.y);
@@ -72,7 +75,7 @@ void mousePressed(){
        mo.selected = true;
     }
   }
-  
+
 }
 
 boolean pointInRect(PVector p, PVector pos, PVector size){
@@ -209,4 +212,3 @@ void dashedCircle(int x, int y, float radius, int dashWidth, int dashSpacing, in
   popMatrix();
   popStyle();
 }
-

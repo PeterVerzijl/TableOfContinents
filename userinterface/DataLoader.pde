@@ -28,7 +28,7 @@ public class DataLoader {
       return;
     }
     // Initialize the dataPoints array
-    dataPoints = new DataPoint[lines.length];
+    dataPoints = new DataPoint[lines.length - 1];
     // Loop trough all the rows (lines) to get the cells.
     // Start at the second line, since the first one only contains headers
     for (int i = 1; i < lines.length; i++)
@@ -38,7 +38,7 @@ public class DataLoader {
       // Split the line into cells (';' seperated values)
       String[] tableCells = splitTokens(line, ";");
       // Put data into a DataPoint.
-      datapoints[i-1] = new DataPoint(
+      dataPoints[i-1] = new DataPoint(
         tableCells[0],          // continentName
         float(tableCells[1]),   // drugRelatedDeaths
         int(tableCells[2]),     // GDP
@@ -46,35 +46,13 @@ public class DataLoader {
         int(tableCells[4]),     // UFOSightings
         int(tableCells[5]),     // homocideRate
         float(tableCells[6]),   // sexLifeSatisfaction
-        float(tableCells[7])   // overweight
-      );
-    }
-  }
-
-  /**
-   * Prints out the loaded data into a console.
-   * @param variable void.
-   * @return void.
-   */
-  public void printData()
-  {
-    // Check if there is something to print in the first place.
-    if (dataPoints == null || dataPoints.length <= 0)
-    {
-      println("Error, dataPoints is either null or empty. Initialize by calling DataLoader.Load();");
-      return;
-    }
-    // Loop trough all the datapoints to print each one of them.
-    for(DataPoint d : dataPoints)
-    {
-      println("DataPoint Name: " + d.continentName +
-        ", drugs: " + d.drugRelatedDeaths +
-        ", GDP: " + d.GDP +
-        ", population: " + d.population +
-        ", UFO: " + d.UFOSightings +
-        ", homocideRate: " + d.homocideRate +
-        ", sex: " + d.sexLifeSatisfaction +
-        ", overweight: " + d.overweight + "."
+        float(tableCells[7]),   // overweight
+        float(tableCells[8]),   // Amphetamine (next few are drugs)
+        float(tableCells[9]),   // Canabis
+        float(tableCells[10]),  // Cigarettes
+        float(tableCells[11]),  // Cocain
+        float(tableCells[12]),  // Ecstacy
+        float(tableCells[13])   // Opiates
       );
     }
   }

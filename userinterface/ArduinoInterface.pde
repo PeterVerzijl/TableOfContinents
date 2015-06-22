@@ -10,11 +10,11 @@ public class ArduinoInterface {
   private boolean handshaked = false;
   private Serial serial;
 
-  public ArduinoInterface()
+  public ArduinoInterface(PApplet applet)
   {
     // Initialize the serial.
     String port = Serial.list()[0];
-    serial = new Serial(this, port, 9800);
+    serial = new Serial(applet, port, 9800);
     serial.bufferUntil('\n');
   }
 
@@ -35,7 +35,7 @@ public class ArduinoInterface {
       serialEvent(serial);
     }
   }
-  
+
   /**
    * Loads the data into the dataPoints variable.
    * <p>
@@ -50,7 +50,7 @@ public class ArduinoInterface {
     // Read buffer
     String val = port.readStringUntil('\n');
     // Check if our string isn't empty
-    if (val == null
+    if (val == null)
       return;
     // Trim whitespace
     val = trim(val);
