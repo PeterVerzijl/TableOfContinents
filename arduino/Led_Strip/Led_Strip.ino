@@ -45,7 +45,7 @@ void loop() {
       ufoSightings();
     }
     if (myChar == 'c') {
-      homocide();
+      homicide();
     }
     if (myChar == 'd') {
       drugDeaths();
