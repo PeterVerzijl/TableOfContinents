@@ -7,6 +7,8 @@ PFont light18; //Stats sub
 PFont light24; // Menu unselected
 PVector p, s;
 
+DataLoader dataLoader;
+
 void setup() {
   size(1280, 720);
   bg = loadImage("bg.png");
@@ -20,6 +22,11 @@ void setup() {
   
   p = new PVector(width/2, height/2);
   s = new PVector(200, 200);
+  
+  // Testing data loader
+  dataLoader = new DataLoader();
+  dataLoader.load("data.txt");
+  dataLoader.printData();
 }
 
 
