@@ -5,6 +5,7 @@ PImage barright;
 PFont bold36; // Stats head
 PFont light18; //Stats sub
 PFont light24; // Menu unselected
+PVector p, s;
 
 void setup() {
   size(1280, 720);
@@ -16,7 +17,12 @@ void setup() {
   bold36 = createFont("SourceSansPro-Bold", 36);
   light18 = createFont("SourceSansPro-Light", 18);
   light24 = createFont("SourceSansPro-Light", 24);
+  
+  p = new PVector(width/2, height/2);
+  s = new PVector(200, 200);
 }
+
+
 
 void draw() {
   image(bg, 0, 0);
@@ -25,10 +31,15 @@ void draw() {
   drawStats();
   drawMenu();
   drawInfo();
+  noFill();
+  stroke(255,0, 0);
+  strokeWeight(1);
+  rect(p.x, p.y, s.x, s.y);
 }
 
-void mouseClicked(){
-  
+void mousePressed(){
+  PVector m = new PVector(mouseX, mouseY);
+  println(pointInRect(m,p,s));
 }
 
 boolean pointInRect(PVector p, PVector pos, PVector size){
@@ -124,7 +135,6 @@ void drawStatsOpt(int x, int y, String headline, String subtext) {
   textSize(18);
   float subtextWidth = textWidth(subtext);
   float boxWidth = max(headlineWidth, subtextWidth) +20;
-  println(headlineWidth, subtextWidth);
 
   noStroke();
   fill(0, 0, 0, 255*.3);
