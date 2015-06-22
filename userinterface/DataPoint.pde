@@ -17,7 +17,7 @@ public class DataPoint {
   /**
    * Prints out the loaded data into a console.
    * <p>
-   * Loads data from a text file at path 'filepath',
+   * Loads data from a text file at path 'filepath'
    * it assumes that it's seperator is a ';' semicolon.
    * <p>
    * @param variable void.

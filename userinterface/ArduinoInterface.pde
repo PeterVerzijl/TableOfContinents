@@ -18,11 +18,33 @@ public class ArduinoInterface {
     serial.bufferUntil('\n');
   }
 
+  /**
+   * Loads the data into the dataPoints variable.
+   * <p>
+   * Loads data from a text file at path 'filepath',
+   * it assumes that it's seperator is a ';' semicolon.
+   * <p>
+   * @param variable The file path.
+   * @return void.
+   */
   public void update()
   {
-
+    while(!handshaked)
+    {
+      serial.write('H');
+      serialEvent(serial);
+    }
   }
-
+  
+  /**
+   * Loads the data into the dataPoints variable.
+   * <p>
+   * Loads data from a text file at path 'filepath',
+   * it assumes that it's seperator is a ';' semicolon.
+   * <p>
+   * @param variable The file path.
+   * @return void.
+   */
   void serialEvent(Serial port)
   {
     // Read buffer
