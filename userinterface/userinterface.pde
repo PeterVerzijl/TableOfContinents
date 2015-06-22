@@ -123,14 +123,8 @@ void draw() {
 
 void mousePressed() {
   PVector m = new PVector(mouseX, mouseY+50);
-<<<<<<< HEAD
-  //println(pointInRect(m,p, menuSize));
-
+  
   for(int i = 0; i < menuOpts.length; i++){
-=======
-
-  for (int i = 0; i < menuOpts.length; i++) {
->>>>>>> origin/master
     menuOpt mo = menuOpts[i];
     PVector pos = (mo.rightside) ? new PVector(width-menuSize.x, mo.y) : new PVector(0, mo.y);
     boolean hit = pointInRect(m, pos, menuSize);
@@ -139,10 +133,6 @@ void mousePressed() {
       mo.selected = true;
     }
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 }
 
 boolean pointInRect(PVector p, PVector pos, PVector size) {
