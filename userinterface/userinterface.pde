@@ -54,6 +54,7 @@ void setup() {
   menuOpts[10] = new menuOpt(y+dy*4, "GDP PER CAPITA", true, true);
   menuOpts[11] = new menuOpt(y+dy*5, "OVERWEIGHT", true, false);
 
+
   DataLoader dl = new DataLoader();
   dl.load("data.csv");
 }
