@@ -28,7 +28,7 @@ public class DataLoader {
       return;
     }
     // Initialize the dataPoints array
-    dataPoints = new DataPoint[lines.length - 1];
+    dataPoints = new DataPoint[lines.length];
     // Loop trough all the rows (lines) to get the cells.
     // Start at the second line, since the first one only contains headers
     for (int i = 1; i < lines.length; i++)
@@ -38,7 +38,7 @@ public class DataLoader {
       // Split the line into cells (';' seperated values)
       String[] tableCells = splitTokens(line, ";");
       // Put data into a DataPoint.
-      dataPoints[i-1] = new DataPoint(
+      datapoints[i-1] = new DataPoint(
         tableCells[0],          // continentName
         float(tableCells[1]),   // drugRelatedDeaths
         int(tableCells[2]),     // GDP
@@ -46,7 +46,7 @@ public class DataLoader {
         int(tableCells[4]),     // UFOSightings
         int(tableCells[5]),     // homocideRate
         float(tableCells[6]),   // sexLifeSatisfaction
-        float(tableCells[7])    // overweight
+        float(tableCells[7])   // overweight
       );
     }
   }
@@ -74,7 +74,7 @@ public class DataLoader {
         ", UFO: " + d.UFOSightings +
         ", homocideRate: " + d.homocideRate +
         ", sex: " + d.sexLifeSatisfaction +
-        ", overweight: " + d.overweight + "." 
+        ", overweight: " + d.overweight + "."
       );
     }
   }
