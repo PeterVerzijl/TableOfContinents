@@ -1,5 +1,13 @@
 PImage bg;
-PImage map;
+PGraphics buff;
+PImage eur;
+PImage sam;
+PImage nam;
+PImage oce;
+PImage afr;
+PImage asi;
+PImage out;
+
 PImage barleft;
 PImage barright;
 PFont bold36; // Stats head
@@ -11,9 +19,17 @@ menuOpt[] menuOpts = new menuOpt[12];
 void setup() {
   size(1280, 720);
   bg = loadImage("bg.png");
-  map = loadImage("map.png");
+  buff = createGraphics(width, height);
   barleft = loadImage("barleft.png");
   barright = loadImage("barright.png");
+
+  eur = loadImage("eur.png");
+  sam = loadImage("sam.png");
+  nam = loadImage("nam.png");
+  oce = loadImage("oce.png");
+  afr = loadImage("afr.png");
+  asi = loadImage("asi.png");
+  out = loadImage("outline.png");
 
   bold36 = createFont("SourceSansPro-Bold", 36);
   light18 = createFont("SourceSansPro-Light", 18);
@@ -25,8 +41,8 @@ void setup() {
   int dy = 70;
 
   menuOpts[0] = new menuOpt(y+dy*0, "CIGARETTES", false, false);
-  menuOpts[1] = new menuOpt(y+dy*1, "AMPHETAMINE", false, false);
-  menuOpts[2] = new menuOpt(y+dy*2, "OPIATES", false, true);
+  menuOpts[1] = new menuOpt(y+dy*1, "OPIATES", false, false);
+  menuOpts[2] = new menuOpt(y+dy*2, "AMPHETAMINE", false, true);
   menuOpts[3] = new menuOpt(y+dy*3, "COCAINE", false, false);
   menuOpts[4] = new menuOpt(y+dy*4, "ECSTACY", false, false);
   menuOpts[5] = new menuOpt(y+dy*5, "CANNABIS", false, false);
@@ -40,49 +56,99 @@ void setup() {
 
   DataLoader dl = new DataLoader();
   dl.load("data.csv");
-  dl.printData();
 }
 
 void draw() {
   image(bg, 0, 0);
   drawGears();
-  image(map, 0, 0);
+
+  buff.beginDraw();
+  buff.image(eur, 0, 0);
+  buff.tint(250, 0, 250);
+  buff.endDraw();
+  image(buff, 0, 0);
+  buff.clear();
+
+  buff.beginDraw();
+  buff.image(afr, 0, 0);
+  buff.tint(0, 250, 250);
+  buff.endDraw();
+  image(buff, 0, 0);
+  buff.clear();
+
+  buff.beginDraw();
+  buff.image(nam, 0, 0);
+  buff.tint(250, 250, 0);
+  buff.endDraw();
+  image(buff, 0, 0);
+  buff.clear();
+
+  buff.beginDraw();
+  buff.image(sam, 0, 0);
+  buff.tint(0, 0, 250);
+  buff.endDraw();
+  image(buff, 0, 0);
+  buff.clear();
+
+  buff.beginDraw();
+  buff.image(oce, 0, 0);
+  buff.tint(0, 250, 0);
+  buff.endDraw();
+  image(buff, 0, 0);
+  buff.clear();
+
+  buff.beginDraw();
+  buff.image(asi, 0, 0);
+  buff.tint(250, 0, 0);
+  buff.endDraw();
+  image(buff, 0, 0);
+  buff.clear();
+
+  image(out, 0, 0);
+
   drawStats();
   drawMenu();
   drawInfo();
 
   noFill();
-  stroke(255,0, 0);
+  stroke(255, 0, 0);
   strokeWeight(1);
-  for(int i = 0; i < menuOpts.length; i++){
+  for (int i = 0; i < menuOpts.length; i++) {
     float x = menuOpts[i].rightside ? width-menuSize.x : 0;
     //rect(x, menuOpts[i].y-50, menuSize.x, menuSize.y);
   }
 }
 
-//hello world
 
-void mousePressed(){
+void mousePressed() {
   PVector m = new PVector(mouseX, mouseY+50);
+<<<<<<< HEAD
   //println(pointInRect(m,p, menuSize));
 
   for(int i = 0; i < menuOpts.length; i++){
+=======
+
+  for (int i = 0; i < menuOpts.length; i++) {
+>>>>>>> origin/master
     menuOpt mo = menuOpts[i];
     PVector pos = (mo.rightside) ? new PVector(width-menuSize.x, mo.y) : new PVector(0, mo.y);
     boolean hit = pointInRect(m, pos, menuSize);
-    if(hit) {
-       for(int j = 0; j < menuOpts.length; j++) if(menuOpts[j].rightside == mo.rightside) menuOpts[j].selected = false;
-       mo.selected = true;
+    if (hit) {
+      for (int j = 0; j < menuOpts.length; j++) if (menuOpts[j].rightside == mo.rightside) menuOpts[j].selected = false;
+      mo.selected = true;
     }
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 }
 
-boolean pointInRect(PVector p, PVector pos, PVector size){
-  if(p.x < pos.x) return false;
-  if(p.x > pos.x+size.x) return false;
-  if(p.y < pos.y) return false;
-  if(p.y > pos.y+size.y) return false;
+boolean pointInRect(PVector p, PVector pos, PVector size) {
+  if (p.x < pos.x) return false;
+  if (p.x > pos.x+size.x) return false;
+  if (p.y < pos.y) return false;
+  if (p.y > pos.y+size.y) return false;
   return true;
 }
 
@@ -110,7 +176,7 @@ void drawInfo() {
 void drawMenu() {
   drawStatsOpt(0, 100, "DRUG USE", "PER CAPITA");
 
- for(int i = 0; i < menuOpts.length; i++) menuOpts[i].update();
+  for (int i = 0; i < menuOpts.length; i++) menuOpts[i].update();
 }
 
 void drawMenuOpt(int y, String text, boolean rightside, boolean selected) {
