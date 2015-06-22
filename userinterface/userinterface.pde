@@ -57,6 +57,10 @@ void setup() {
 
   DataLoader dl = new DataLoader();
   dl.load("data.csv");
+  for(int i = 0; i < dl.dataPoints.length;i++){
+    println(dl.dataPoints[i].continentName, dl.dataPoints[i].population, dl.dataPoints[i].UFOSightings);
+  }
+  
 }
 
 void draw() {
