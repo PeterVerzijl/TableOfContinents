@@ -33,7 +33,7 @@ public class DataPoint {
    * @return void.
    */
   public DataPoint(String _continentName, float _drugRelatedDeaths,
-    int _GDP, int _population, int _UFOSightings, int _homocideRate,
+    int _GDP, long _population, int _UFOSightings, int _homocideRate,
     float _sexLifeSatisfaction, float _overweight, float _amphetamine,
     float _canabis, float _cigarettes, float _cocaine, float _ecstacy,
     float _opiates)

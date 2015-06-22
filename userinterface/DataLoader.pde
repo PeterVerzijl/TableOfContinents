@@ -42,7 +42,7 @@ public class DataLoader {
         tableCells[0],          // continentName
         float(tableCells[1]),   // drugRelatedDeaths
         int(tableCells[2]),     // GDP
-        int(tableCells[3]),     // population
+        Long.parseLong(tableCells[3]),     // population
         int(tableCells[4]),     // UFOSightings
         int(tableCells[5]),     // homocideRate
         float(tableCells[6]),   // sexLifeSatisfaction
