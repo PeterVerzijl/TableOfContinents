@@ -9,7 +9,7 @@ public class DataPoint {
   public String continentName = "Error";
   public float drugRelatedDeaths = 0.0f;
   public int GDP = 0;
-  public int population = 0;
+  public long population = 0;
   public int UFOSightings = 0;
   public int homocideRate = 0;
   public float sexLifeSatisfaction = 0.0f;
