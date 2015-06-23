@@ -13,9 +13,11 @@ menuOpt[] menuOpts = new menuOpt[12];
 statsOpt[] statsOpts = new statsOpt[7];
 DataLoader dl = new DataLoader();
 
-
 // Arduino
 ArduinoInterface arduino;
+
+// Continents
+Continent[] continents;
 
 void setup() {
   size(1280, 720);
@@ -72,9 +74,11 @@ void setup() {
   statsOpts[5] = new statsOpt(855, 560, "47.1%", "OCEANIA");
   statsOpts[6] = new statsOpt(0, 100, "DRUG USE", "PER CAPITA");
 
-  dl.load("data.csv");
-  for(int i = 0; i < dl.dataPoints.length;i++){
-    println(dl.dataPoints[i].continentName, dl.dataPoints[i].population, dl.dataPoints[i].UFOSightings);
+  DataPoint[] dataPoints = dl.load("data.csv");
+  continents = new Continent[dataPoints.length];
+  for(int i = 0; i < dataPoints.length; i++)
+  {
+      continents[i] = new Continent(dataPoints[i].continentName, i + 1, i + 1, dataPoints[i]);
   }
   
   // Initialize arduino
@@ -107,7 +111,7 @@ void draw() {
   }
 }
 
-
+/*
 void mousePressed() {    
   PVector m = new PVector(mouseX, mouseY+50);
   
@@ -156,7 +160,7 @@ void drawMenu() {
 
   for (int i = 0; i < menuOpts.length; i++) menuOpts[i].update();
 }
-
+*/
 void drawMenuOpt(int y, String text, boolean rightside, boolean selected) {
   int x = rightside ? width - 216 : 0;
   float tx = rightside ? width - 10 : 10;
@@ -181,7 +185,7 @@ void drawMenuOpt(int y, String text, boolean rightside, boolean selected) {
 
   image(bar, x, y-12);
 }
-
+/*
 void drawStats() {
   drawStatsOpt(555, 325, "12.2%", "EUROPE");
   drawStatsOpt(570, 480, "64.8%", "AFRICA");
@@ -190,7 +194,7 @@ void drawStats() {
   drawStatsOpt(350, 315, "14.2%", "NORTH AMERICA");
   drawStatsOpt(855, 560, "47.1%", "OCEANIAN");
 }
-
+*/
 void drawStatsOpt(int x, int y, String headline, String subtext) {
   pushStyle();
   pushMatrix();
@@ -225,7 +229,7 @@ void drawStatsOpt(int x, int y, String headline, String subtext) {
 
 /* Method of dashing circle abbreviated from */
 /* http://www.openprocessing.org/sketch/28215 */
-
+/*
 void dashedCircle(int x, int y, float radius, int dashWidth, int dashSpacing, int weight, float rot) {
   pushStyle();
   pushMatrix();
@@ -256,6 +260,7 @@ void dashedCircle(int x, int y, float radius, int dashWidth, int dashSpacing, in
   popMatrix();
   popStyle();
 }
+*/
 
 void serialEvent(Serial port)
 {
