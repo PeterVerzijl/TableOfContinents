@@ -7,7 +7,7 @@ PImage oce;
 PImage afr;
 PImage asi;
 PImage out;
-
+//I was here
 PImage barleft;
 PImage barright;
 PFont bold36; // Stats head
