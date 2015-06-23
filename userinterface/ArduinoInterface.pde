@@ -13,8 +13,8 @@ public class ArduinoInterface {
   public ArduinoInterface(PApplet applet)
   {
     // Initialize the serial.
-    String port = Serial.list()[0];
-    serial = new Serial(applet, port, 9800);
+    String arduinoPort = Serial.list()[0];
+    serial = new Serial(applet, arduinoPort, 9800);
     serial.bufferUntil('\n');
   }
 
@@ -29,11 +29,12 @@ public class ArduinoInterface {
    */
   public void update()
   {
-    while(!handshaked)
-    {
-      serial.write('H');
-      serialEvent(serial);
-    }
+    
+  }
+  
+  public void SendString(String s) 
+  {
+    serial.write(s);
   }
 
   /**
@@ -47,28 +48,6 @@ public class ArduinoInterface {
    */
   void serialEvent(Serial port)
   {
-    // Read buffer
-    String val = port.readStringUntil('\n');
-    // Check if our string isn't empty
-    if (val == null)
-      return;
-    // Trim whitespace
-    val = trim(val);
-    // Check for the "A" string.
-    if (!handshaked)
-    {
-      if (val.equals("HANDSHAKE"))
-      {
-        port.clear();
-        port.write("HANDSHAKE_OK");
-        handshaked = true;
-        println("Handshake successful");
-      }
-    }
-    else
-    {
-      println("Arduino: " + val);
-      // More code!!
-    }
+    print(port.readString());
   }
 }
