@@ -1,0 +1,5 @@
+command;To;meaning
+R;Processing;Resend last message
+L;Arduino;Led command: L(1-6)C#########
+S;Arduino;Stepper command: S(1-6)(0-255)
+CALIB;Arduino;Calibrate steppers
