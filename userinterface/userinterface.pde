@@ -7,14 +7,17 @@ PImage oce;
 PImage afr;
 PImage asi;
 PImage out;
-//I was here
 PImage barleft;
 PImage barright;
 PFont bold36; // Stats head
 PFont light18; //Stats sub
 PFont light24; // Menu unselected
 PVector menuSize;
+
 menuOpt[] menuOpts = new menuOpt[12];
+
+// Arduino
+ArduinoInterface arduino;
 
 void setup() {
   size(1280, 720);
@@ -61,6 +64,8 @@ void setup() {
     println(dl.dataPoints[i].continentName, dl.dataPoints[i].population, dl.dataPoints[i].UFOSightings);
   }
   
+  // Initialize arduino
+  arduino = new ArduinoInterface(this);
 }
 
 void draw() {
@@ -125,7 +130,7 @@ void draw() {
 }
 
 
-void mousePressed() {
+void mousePressed() {    
   PVector m = new PVector(mouseX, mouseY+50);
   
   for(int i = 0; i < menuOpts.length; i++){
@@ -272,4 +277,9 @@ void dashedCircle(int x, int y, float radius, int dashWidth, int dashSpacing, in
 
   popMatrix();
   popStyle();
+}
+
+void serialEvent(Serial port)
+{
+  arduino.serialEvent(port);
 }
