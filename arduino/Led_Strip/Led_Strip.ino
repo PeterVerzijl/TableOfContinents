@@ -1,7 +1,7 @@
 #include "FastLED.h"
 
 // total led's in series
-#define NUM_LEDS 4
+#define NUM_LEDS 6
 
 // Hallo I am Joep
 
@@ -12,7 +12,7 @@
 int fadeValue = 1;
 
 // led's per continent (ideal: total should add up to NUM_LEDS
-int continent [6] = {2, 4, 6, 8, 10, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
+int continent [6] = {2, 6, 7, 8, 10, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
 
 //define the data pin
 #define DATA_PIN 10
