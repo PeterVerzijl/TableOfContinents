@@ -19,8 +19,9 @@ void updateData(menuOpt mo) {
   if (mo.rightside)
     for (int i = 0; i < dl.dataPoints.length; i++) {
       if (mo.text.equals("SEXLIFE SATISFACTION")) {
-        color c1 = color(#fff746);
-        color c2 = color(#ff0201);
+        println(mo.text);
+        color c1 = color(#ff0201);
+        color c2 = color(#fff746);
         float[] stats = new float[6];
         for (int j = 0; j < dl.dataPoints.length; j++) stats[j] = dl.dataPoints[j].sexLifeSatisfaction;
         float max = max(stats);
@@ -39,6 +40,7 @@ void updateData(menuOpt mo) {
       }
 
       if (mo.text.equals("UFO SIGHTINGS")) {
+        println(mo.text);
         color c1 = color(#ffffff);
         color c2 = color(#9845ff);
         float[] stats = new float[6];
@@ -59,6 +61,7 @@ void updateData(menuOpt mo) {
       }
 
       if (mo.text.equals("HOMICIDE RATE")) {
+        println(mo.text);
         color c1 = color(#ff0c0d);
         color c2 = color(#249afe);
         float[] stats = new float[6];
@@ -79,6 +82,7 @@ void updateData(menuOpt mo) {
       }
 
       if (mo.text.equals("DRUG RELATED DEATHS")) {
+        println(mo.text);
         color c1 = color(#ff6508);
         color c2 = color(#91ff78);
         float[] stats = new float[6];
@@ -99,19 +103,22 @@ void updateData(menuOpt mo) {
       }
 
       if (mo.text.equals("GDP PER CAPITA")) {
-        color c1 = color(#36ff01);
-        color c2 = color(#ffffff);
+        println(mo.text);
+        color c1 = color(#ffffff);
+        color c2 = color(#36ff01);
         float[] stats = new float[6];
         for (int j = 0; j < dl.dataPoints.length; j++) stats[j] = dl.dataPoints[j].GDP;
         float max = max(stats);
         float min = min(stats);
-
+println(min, max);
         asic = lerpColor(c1, c2, norm(stats[0], min, max));
         eurc = lerpColor(c1, c2, norm(stats[1], min, max));
         samc = lerpColor(c1, c2, norm(stats[2], min, max));
         namc = lerpColor(c1, c2, norm(stats[3], min, max));
         afrc = lerpColor(c1, c2, norm(stats[4], min, max));
         ocec = lerpColor(c1, c2, norm(stats[5], min, max));
+        
+        println(norm(stats[5], min, max),norm(stats[3], min, max),norm(stats[1], min, max),norm(stats[2], min, max),norm(stats[0], min, max),norm(stats[4], min, max));
 
         for (int j = 0; j < dl.dataPoints.length; j++) println(dl.dataPoints[j].continentName);
         println(stats);
@@ -119,6 +126,7 @@ void updateData(menuOpt mo) {
       }
 
       if (mo.text.equals("OVERWEIGHT")) {
+        println(mo.text);
         color c1 = color(#abff89);
         color c2 = color(#ff309b);
         float[] stats = new float[6];
@@ -138,20 +146,8 @@ void updateData(menuOpt mo) {
         break;
       }
 
-      /*
-        Asia
-       Europe
-       South America
-       North America
-       Africa
-       Oceania
-       */
     }
-
-
-  for (int i = 0; i < dl.dataPoints.length; i++) {
-    //println(dl.dataPoints[i].continentName, dl.dataPoints[i].population, dl.dataPoints[i].UFOSightings, dl.dataPoints[i].canabis);
-  }
+    
 }
 
 void mousePressed() {

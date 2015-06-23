@@ -1,4 +1,5 @@
 
+PGraphics buff;
 void drawTintedImage(PImage img, color col){
   buff.beginDraw();
   buff.image(img, 0, 0);

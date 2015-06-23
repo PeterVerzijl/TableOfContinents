@@ -1,5 +1,4 @@
 PImage bg;
-PGraphics buff;
 PImage eur, sam, nam, oce, afr, asi;
 color eurc, samc, namc, ocec, afrc, asic;
 PImage out;
