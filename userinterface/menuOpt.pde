@@ -10,7 +10,7 @@ class menuOpt {
     rightside = _rightside;
     selected = _selected;
   }
-
+  
   void update() {
     drawMenuOpt(y, text, rightside, selected);
   }

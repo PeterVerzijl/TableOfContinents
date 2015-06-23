@@ -3,7 +3,7 @@ PGraphics buff;
 PImage eur, sam, nam, oce, afr, asi;
 color eurc, samc, namc, ocec, afrc, asic;
 PImage out;
-//I was here
+
 PImage barleft;
 PImage barright;
 PFont bold36; // Stats head
@@ -12,6 +12,7 @@ PFont light24; // Menu unselected
 PVector menuSize;
 menuOpt[] menuOpts = new menuOpt[12];
 statsOpt[] statsOpts = new statsOpt[7];
+DataLoader dl = new DataLoader();
 
 
 void setup() {
@@ -66,14 +67,10 @@ void setup() {
   statsOpts[2] = new statsOpt(790, 330, "23.5%", "ASIA");
   statsOpts[3] = new statsOpt(385, 520, "34.0%", "SOUTH AMERICA");
   statsOpts[4] = new statsOpt(350, 315, "14.2%", "NORTH AMERICA");
-  statsOpts[5] = new statsOpt(855, 560, "47.1%", "OCEANIAN");
+  statsOpts[5] = new statsOpt(855, 560, "47.1%", "OCEANIA");
   statsOpts[6] = new statsOpt(0, 100, "DRUG USE", "PER CAPITA");
 
-  DataLoader dl = new DataLoader();
   dl.load("data.csv");
-  for (int i = 0; i < dl.dataPoints.length; i++) {
-    println(dl.dataPoints[i].continentName, dl.dataPoints[i].population, dl.dataPoints[i].UFOSightings);
-  }
 }
 
 void draw() {
@@ -95,5 +92,4 @@ void draw() {
 
   //drawDebugOutline();
 }
-
 

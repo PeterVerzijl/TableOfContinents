@@ -17,7 +17,7 @@ public class DataPoint {
 
   // Drugs
   public float amphetamine = 0.0f;
-  public float canabis = 0.0f;
+  public float cannabis = 0.0f;
   public float cigarettes = 0.0f;
   public float cocaine = 0.0f;
   public float ecstacy = 0.0f;
@@ -32,11 +32,11 @@ public class DataPoint {
    * @param variable void.
    * @return void.
    */
-  public DataPoint(String _continentName, float _drugRelatedDeaths,
-    int _GDP, long _population, int _UFOSightings, int _homocideRate,
-    float _sexLifeSatisfaction, float _overweight, float _amphetamine,
-    float _canabis, float _cigarettes, float _cocaine, float _ecstacy,
-    float _opiates)
+  public DataPoint(String _continentName, float _drugRelatedDeaths, 
+  int _GDP, long _population, int _UFOSightings, int _homocideRate, 
+  float _sexLifeSatisfaction, float _overweight, float _amphetamine, 
+  float _cannabis, float _cigarettes, float _cocaine, float _ecstacy, 
+  float _opiates)
   {
     continentName       = _continentName;
     drugRelatedDeaths   = _drugRelatedDeaths;
@@ -48,10 +48,11 @@ public class DataPoint {
     overweight          = _overweight;
     // Drugs
     amphetamine         = _amphetamine;
-    canabis             = _canabis;
+    cannabis             = _cannabis;
     cigarettes          = _cigarettes;
     cocaine             = _cocaine;
     ecstacy             = _ecstacy;
     opiates             = _opiates;
   }
 }
+
