@@ -1,7 +1,7 @@
 #include "FastLED.h"
 
 // total led's in series
-#define NUM_LEDS 4
+#define NUM_LEDS 2
 
 // Hallo I am Joep
 
@@ -13,7 +13,7 @@ int fadeValue = 1;
 int counter = 0;
 
 // led's per continent (ideal: total should add up to NUM_LEDS
-int continent [6] = {4, 6, 8, 10, 11, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
+int continent [6] = {2, 6, 8, 10, 11, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
 
 //define the data pin
 #define DATA_PIN 10
@@ -44,14 +44,12 @@ void loop() {
       Serial.print("HANDSHAKE");
     }
     if (myChar == 'a') {
-      ///do something jayy
+      led(1,0,255,0);
     }
   }
 
   //Fade to the color TO BE SET for each continent
-  delay(1000 / updatesPerSecond);
-
-  if (millis() == counter + 1000/updatesPerSecond) {
+  if (millis() > counter + 1000/updatesPerSecond) {
     counter = millis();
     for (int j = 0; j < 6; j++) {
       for (int i = 0; i < 3; i++) {
