@@ -1,11 +1,7 @@
 PImage bg;
 PGraphics buff;
-PImage eur;
-PImage sam;
-PImage nam;
-PImage oce;
-PImage afr;
-PImage asi;
+PImage eur, sam, nam, oce, afr, asi;
+color eurc, samc, namc, ocec, afrc, asic;
 PImage out;
 PImage barleft;
 PImage barright;
@@ -15,6 +11,9 @@ PFont light24; // Menu unselected
 PVector menuSize;
 
 menuOpt[] menuOpts = new menuOpt[12];
+statsOpt[] statsOpts = new statsOpt[7];
+DataLoader dl = new DataLoader();
+
 
 // Arduino
 ArduinoInterface arduino;
@@ -32,6 +31,14 @@ void setup() {
   oce = loadImage("oce.png");
   afr = loadImage("afr.png");
   asi = loadImage("asi.png");
+
+  eurc = color(250, 0, 0);
+  samc = color(0, 250, 0);
+  namc = color(0, 0, 250);
+  ocec = color(250, 250, 0);
+  afrc = color(250, 0, 250);
+  asic = color(0, 250, 250);
+
   out = loadImage("outline.png");
 
   bold36 = loadFont("SourceSansPro-Bold-36.vlw");
@@ -58,7 +65,14 @@ void setup() {
   menuOpts[11] = new menuOpt(y+dy*5, "OVERWEIGHT", true, false);
 
 
-  DataLoader dl = new DataLoader();
+  statsOpts[0] = new statsOpt(555, 325, "12.2%", "EUROPE");
+  statsOpts[1] = new statsOpt(570, 480, "64.8%", "AFRICA");
+  statsOpts[2] = new statsOpt(790, 330, "23.5%", "ASIA");
+  statsOpts[3] = new statsOpt(385, 520, "34.0%", "SOUTH AMERICA");
+  statsOpts[4] = new statsOpt(350, 315, "14.2%", "NORTH AMERICA");
+  statsOpts[5] = new statsOpt(855, 560, "47.1%", "OCEANIA");
+  statsOpts[6] = new statsOpt(0, 100, "DRUG USE", "PER CAPITA");
+
   dl.load("data.csv");
   for(int i = 0; i < dl.dataPoints.length;i++){
     println(dl.dataPoints[i].continentName, dl.dataPoints[i].population, dl.dataPoints[i].UFOSightings);
@@ -72,47 +86,12 @@ void draw() {
   image(bg, 0, 0);
   drawGears();
 
-  buff.beginDraw();
-  buff.image(eur, 0, 0);
-  buff.tint(250, 0, 250);
-  buff.endDraw();
-  image(buff, 0, 0);
-  buff.clear();
-
-  buff.beginDraw();
-  buff.image(afr, 0, 0);
-  buff.tint(0, 255, 255);
-  buff.endDraw();
-  image(buff, 0, 0);
-  buff.clear();
-
-  buff.beginDraw();
-  buff.image(nam, 0, 0);
-  buff.tint(250, 250, 0);
-  buff.endDraw();
-  image(buff, 0, 0);
-  buff.clear();
-
-  buff.beginDraw();
-  buff.image(sam, 0, 0);
-  buff.tint(0, 0, 250);
-  buff.endDraw();
-  image(buff, 0, 0);
-  buff.clear();
-
-  buff.beginDraw();
-  buff.image(oce, 0, 0);
-  buff.tint(0, 250, 0);
-  buff.endDraw();
-  image(buff, 0, 0);
-  buff.clear();
-
-  buff.beginDraw();
-  buff.image(asi, 0, 0);
-  buff.tint(250, 0, 0);
-  buff.endDraw();
-  image(buff, 0, 0);
-  buff.clear();
+  drawTintedImage(asi, asic);
+  drawTintedImage(afr, afrc);
+  drawTintedImage(eur, eurc);
+  drawTintedImage(nam, namc);
+  drawTintedImage(sam, samc);
+  drawTintedImage(oce, ocec);
 
   image(out, 0, 0);
 

@@ -3,14 +3,17 @@
 // total led's in series
 #define NUM_LEDS 4
 
+// Hallo I am Joep
+
 // define updates per second
 #define updatesPerSecond 200
 
 // fade_duration 1 = 2,55sec, 2 = 1,27sec, 3 = 0,85sec, etc
 int fadeValue = 1;
+int counter = 0;
 
 // led's per continent (ideal: total should add up to NUM_LEDS
-int continent [6] = {2, 4, 6, 8, 10, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
+int continent [6] = {4, 6, 8, 10, 11, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
 
 //define the data pin
 #define DATA_PIN 10
@@ -35,37 +38,27 @@ void loop() {
   //depending on the input, make the leds be set to another value
   while (Serial.available () > 0) {
     int myChar = (Serial.read());
-    if (myChar == 'H'){
+    if (myChar == 'H') {
       Serial.print("HANDSHAKE");
     }
     if (myChar == 'a') {
-      sexLife();
-    }
-    if (myChar == 'b') {
-      ufoSightings();
-    }
-    if (myChar == 'c') {
-      homicide();
-    }
-    if (myChar == 'd') {
-      drugDeaths();
-    }
-    if (myChar == 'e') {
-      gdp();
-    }
-    if (myChar == 'f') {
-      overweight();
+      ///do something jayy
     }
   }
 
   //Fade to the color TO BE SET for each continent
-  for (int j = 0; j < 6; j++) {
-    for (int i = 0; i < 3; i++) {
-      if (continentColor[j][i] < setContinentColor[j][i] - fadeValue) {
-        continentColor[j][i] += fadeValue;
-      }
-      if (continentColor[j][i] > setContinentColor[j][i] + fadeValue) {
-        continentColor[j][i] -= fadeValue;
+  delay(1000 / updatesPerSecond);
+
+  if (millis() == counter + 1000/updatesPerSecond) {
+    counter = millis();
+    for (int j = 0; j < 6; j++) {
+      for (int i = 0; i < 3; i++) {
+        if (continentColor[j][i] < setContinentColor[j][i] - fadeValue) {
+          continentColor[j][i] += fadeValue;
+        }
+        if (continentColor[j][i] > setContinentColor[j][i] + fadeValue) {
+          continentColor[j][i] -= fadeValue;
+        }
       }
     }
   }
@@ -92,7 +85,6 @@ void loop() {
     }
   }
   FastLED.show();
-  delay(1000 / updatesPerSecond);
 }
 
 
