@@ -29,12 +29,14 @@ CRGB leds[NUM_LEDS];
 
 void setup() {
   Serial.begin(9600);
+  setupSteppers();
   //define the type of chip
   FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
 }
 
 void loop() {
-
+  rotate(0,true,10);
+  rotate(0,false,10);
   //depending on the input, make the leds be set to another value
   while (Serial.available () > 0) {
     int myChar = (Serial.read());
