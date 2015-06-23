@@ -23,6 +23,7 @@ void setupSteppers(){
   for(int i = 0; i < AMOUNTSTEPPERS; i++){
   pinMode(steppers[i].directionPort, OUTPUT);
   pinMode(steppers[i].PWMPort, OUTPUT);
+  pinMode(steppers[i].caliPort, INPUT);
   calib(i);
   }
 }
