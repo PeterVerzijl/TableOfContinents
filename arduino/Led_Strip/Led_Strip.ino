@@ -24,21 +24,31 @@ int continentColor [6][3];
 //make arrays for the color TO BE SET (R,G,B value)
 int setContinentColor [6][3];
 
+//make variables for serial communication
+int numbers[6][4];
+String input;
+int continentSize = 6; //amount of continents
+int protocolSize = 4; //amount of values sent like this R,G,B,height
+
 // Define the array of leds
 CRGB leds[NUM_LEDS];
 
 void setup() {
   Serial.begin(9600);
-  setupSteppers();
   //define the type of chip
   FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
 }
 
 void loop() {
-  rotate(0,true,10);
-  rotate(0,false,10);
+
   //depending on the input, make the leds be set to another value
-  while (Serial.available () > 0) {
+  readSerial();
+  led(0,numbers[0][0],numbers[0][1],numbers[0][2]); 
+  Serial.print(numbers[0][0]);
+  Serial.print(numbers[0][1]);
+  Serial.println(numbers[0][2]);
+     
+  /*while (Serial.available () > 0) {
     int myChar = (Serial.read());
     if (myChar == 'H') {
       Serial.print("HANDSHAKE");
@@ -46,7 +56,7 @@ void loop() {
     if (myChar == 'a') {
       led(1,0,255,0);
     }
-  }
+  }*/
 
   //Fade to the color TO BE SET for each continent
   if (millis() > counter + 1000/updatesPerSecond) {
