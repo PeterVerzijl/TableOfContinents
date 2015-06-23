@@ -7,11 +7,10 @@ import processing.serial.*;
  */
 public class ArduinoInterface {
 
-  private boolean handshaked = false;
+  private String lastMessage = "";
   private Serial serial;
 
-  public ArduinoInterface(PApplet applet)
-  {
+  public ArduinoInterface(PApplet applet) {
     // Initialize the serial.
     String arduinoPort = Serial.list()[0];
     serial = new Serial(applet, arduinoPort, 9800);
@@ -19,35 +18,31 @@ public class ArduinoInterface {
   }
 
   /**
-   * Loads the data into the dataPoints variable.
-   * <p>
-   * Loads data from a text file at path 'filepath',
-   * it assumes that it's seperator is a ';' semicolon.
-   * <p>
-   * @param variable The file path.
+   * Send a string to the aruino.
+   * @param variable The string to send to arduino.
    * @return void.
    */
-  public void update()
-  {
-    
-  }
-  
-  public void SendString(String s) 
-  {
+  public void sendString(String s) {
+    lastMessage = s;
     serial.write(s);
   }
 
+  public void sendLedMessage(Continent continent, color ledColor) {
+
+  }
+
   /**
-   * Loads the data into the dataPoints variable.
+   * Gets called upon any serial event.
    * <p>
-   * Loads data from a text file at path 'filepath',
-   * it assumes that it's seperator is a ';' semicolon.
-   * <p>
-   * @param variable The file path.
+   * Handles everything that relates to communication from arduino to processing.
+   * @param variable The serial port that gets triggered.
    * @return void.
    */
-  void serialEvent(Serial port)
-  {
-    print(port.readString());
+  void serialEvent(Serial port) {
+    String s = port.readString();
+    if (s.equals("R")) {
+        sendString(lastMessage);
+    }
+    print(s);
   }
 }

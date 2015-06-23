@@ -5,8 +5,7 @@
  */
 public class DataLoader {
 
-  public DataPoint[] dataPoints;
-
+  // Constructor
   public DataLoader() {}
 
   /**
@@ -18,27 +17,29 @@ public class DataLoader {
    * @param variable The file path.
    * @return void.
    */
-  public void load(String filepath)
-  {
+  public DataPoint[] load(String filepath) {
+    // Return array
+    DataPoint[] returnArray;
+
     String[] lines = loadStrings(filepath);
     // Check if we have any data at all
-    if (lines == null)
-    {
+    if (lines == null) {
       println("Error, the file path is invalid.");
-      return;
+      return null;
     }
+
     // Initialize the dataPoints array
-    dataPoints = new DataPoint[lines.length - 1];
+    returnArray = new DataPoint[lines.length - 1];
+
     // Loop trough all the rows (lines) to get the cells.
     // Start at the second line, since the first one only contains headers
-    for (int i = 1; i < lines.length; i++)
-    {
+    for (int i = 1; i < lines.length; i++) {
       // Get line
       String line = lines[i];
       // Split the line into cells (';' seperated values)
       String[] tableCells = splitTokens(line, ";");
       // Put data into a DataPoint.
-      dataPoints[i-1] = new DataPoint(
+      returnArray[i-1] = new DataPoint(
         tableCells[0],          // continentName
         float(tableCells[1]),   // drugRelatedDeaths
         int(tableCells[2]),     // GDP
@@ -55,5 +56,6 @@ public class DataLoader {
         float(tableCells[13])   // Opiates
       );
     }
+    return returnArray;
   }
 }
