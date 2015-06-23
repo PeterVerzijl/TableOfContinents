@@ -3,6 +3,8 @@
 // total led's in series
 #define NUM_LEDS 4
 
+// Hallo I am Joep
+
 // define updates per second
 #define updatesPerSecond 200
 
