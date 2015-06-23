@@ -1,7 +1,7 @@
 #include "FastLED.h"
 
 // total led's in series
-#define NUM_LEDS 6
+#define NUM_LEDS 10
 
 // Hallo I am Joep
 
@@ -12,7 +12,7 @@
 int fadeValue = 1;
 
 // led's per continent (ideal: total should add up to NUM_LEDS
-int continent [6] = {2, 6, 7, 8, 10, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
+int continent [6] = {4, 6, 8, 10, 11, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
 
 //define the data pin
 #define DATA_PIN 10
@@ -41,22 +41,7 @@ void loop() {
       Serial.print("HANDSHAKE");
     }
     if (myChar == 'a') {
-      sexLife();
-    }
-    if (myChar == 'b') {
-      ufoSightings();
-    }
-    if (myChar == 'c') {
-      homicide();
-    }
-    if (myChar == 'd') {
-      drugDeaths();
-    }
-    if (myChar == 'e') {
-      gdp();
-    }
-    if (myChar == 'f') {
-      overweight();
+      ///do something jayy
     }
   }
 
