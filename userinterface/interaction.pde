@@ -7,12 +7,12 @@ void updateData(menuOpt mo) {
     for (int i = 0; i < dl.dataPoints.length; i++)
       for (int j = 0; j < statsOpts.length; j++)
         if (statsOpts[j].subtext.toLowerCase().equals(dl.dataPoints[i].continentName.toLowerCase())){
-          if(mo.text.equals("CIGARETTES")) statsOpts[j].headline = str(dl.dataPoints[i].cigarettes*100) + "%";
-          else if(mo.text.equals("OPIATES")) statsOpts[j].headline = str(dl.dataPoints[i].opiates*100) + "%";
-          else if(mo.text.equals("AMPHETAMINE")) statsOpts[j].headline = str(dl.dataPoints[i].amphetamine*100) + "%";
-          else if(mo.text.equals("COCAINE")) statsOpts[j].headline = str(dl.dataPoints[i].cocaine*100) + "%";
-          else if(mo.text.equals("ECSTACY")) statsOpts[j].headline = str(dl.dataPoints[i].ecstacy*100) + "%";
-          else if(mo.text.equals("CANNABIS")) statsOpts[j].headline = str(dl.dataPoints[i].cannabis*100) + "%";
+          if(mo.text.equals("CIGARETTES")) statsOpts[j].headline = str(dl.dataPoints[i].cigarettes) + "%";
+          else if(mo.text.equals("OPIATES")) statsOpts[j].headline = str(dl.dataPoints[i].opiates) + "%";
+          else if(mo.text.equals("AMPHETAMINE")) statsOpts[j].headline = str(dl.dataPoints[i].amphetamine) + "%";
+          else if(mo.text.equals("COCAINE")) statsOpts[j].headline = str(dl.dataPoints[i].cocaine) + "%";
+          else if(mo.text.equals("ECSTACY")) statsOpts[j].headline = str(dl.dataPoints[i].ecstacy) + "%";
+          else if(mo.text.equals("CANNABIS")) statsOpts[j].headline = str(dl.dataPoints[i].cannabis) + "%";
         }
         
    
