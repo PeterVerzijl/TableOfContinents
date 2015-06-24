@@ -37,20 +37,19 @@ public class ArduinoInterface {
     // Build message for all the continents
     String message = "";
     for(int i = 0; i < continents.length; i++) {
-      float c = continentColors[i];
-      int red = c >> 16 & 0xFF;
-      int green = c >> 8 & 0xFF;
-      int blue = c & 0xFF;
+      color c = continentColors[i];
+      int r = (c >> 16) & 0xFF;      // Faster way of getting red(c);
+      int g = (c >> 8) & 0xFF;
+      int b = c & 0xFF;
       message =
-        str(red) + ',' +
-        str(green) + ',' +
-        str(blue) + ',' +
+        str(r) + ',' +
+        str(g) + ',' +
+        str(b) + ',' +
         str(continentHeights[i]) +
         'n';
     }
     // Send message
-    lastMessage = message;
-    serial.write(message);
+    sendString(message);
   }
 
   /**
@@ -86,9 +85,14 @@ public class ArduinoInterface {
     // Send data to arduino
     sendMessage();
   }
-
-
-
+  
+  public void sendString(String s) {
+    lastMessage = s;
+    serial.write(s);
+    print("Serial: " + s);
+  }
+    
+  
   /**
    * Gets called upon any serial event.
    * <p>
