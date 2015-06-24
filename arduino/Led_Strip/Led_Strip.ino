@@ -1,19 +1,17 @@
 #include "FastLED.h"
 
 // total led's in series
-#define NUM_LEDS 2
-
-// Hallo I am Joep
+#define NUM_LEDS 10
 
 // define updates per second
-#define updatesPerSecond 200
+#define updatesPerSecond 100
 
 // fade_duration 1 = 2,55sec, 2 = 1,27sec, 3 = 0,85sec, etc
 int fadeValue = 1;
-int counter = 0;
+unsigned long counter = 0;
 
 // led's per continent (ideal: total should add up to NUM_LEDS
-int continent [6] = {2, 6, 8, 10, 11, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
+int continent [6] = {2, 4, 8, 10, 11, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
 
 //define the data pin
 #define DATA_PIN 10
@@ -44,19 +42,11 @@ void loop() {
   //depending on the input, make the leds be set to another value
   readSerial();
   led(0,numbers[0][0],numbers[0][1],numbers[0][2]); 
-  Serial.print(numbers[0][0]);
-  Serial.print(numbers[0][1]);
-  Serial.println(numbers[0][2]);
-     
-  /*while (Serial.available () > 0) {
-    int myChar = (Serial.read());
-    if (myChar == 'H') {
-      Serial.print("HANDSHAKE");
-    }
-    if (myChar == 'a') {
-      led(1,0,255,0);
-    }
-  }*/
+  led(1,numbers[1][0],numbers[1][1],numbers[1][2]); 
+  led(2,numbers[2][0],numbers[2][1],numbers[2][2]); 
+  led(3,numbers[3][0],numbers[3][1],numbers[3][2]);
+  led(4,numbers[4][0],numbers[4][1],numbers[4][2]); 
+  led(5,numbers[5][0],numbers[5][1],numbers[5][2]);  
 
   //Fade to the color TO BE SET for each continent
   if (millis() > counter + 1000/updatesPerSecond) {

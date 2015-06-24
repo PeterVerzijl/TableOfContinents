@@ -12,17 +12,20 @@ void readSerial() {
         char c = Serial.read();
         input += c;
       }
-    }
-    //loop through the continents
-    for (int i = 0; i < continentSize; i++) {
-      //split the long String into continent strings
-      String conti = getValue(input, 'n', i); // n is split identifier
-      for (int j = 0; j < protocolSize; j++) {
-        //spit the continent string into smaller strings
-        String val = getValue(conti, ',', j); //, is the split identifier
-        //convert string to int and put it in the matrix
-        numbers[i][j] = val.toInt();
-        //Serial.println(numbers[i][j]);
+      //loop through the continents
+      for (int i = 0; i < continentSize; i++) {
+        //split the long String into continent strings
+        String conti = getValue(input, 'n', i); // n is split identifier
+        for (int j = 0; j < protocolSize; j++) {
+          //spit the continent string into smaller strings
+          String val = getValue(conti, ',', j); //, is the split identifier
+          //convert string to int and put it in the matrix
+          numbers[i][j] = val.toInt();
+          //Serial.println(numbers[i][j]);
+          if (val == "H"){
+            Serial.write("HANDSHAKE");
+          }
+        }
       }
     }
   }
@@ -33,15 +36,16 @@ String getValue(String data, char separator, int index)
 {
   int found = 0;
   int strIndex[] = {
-    0, -1    };
-  int maxIndex = data.length()-1;
-  for(int i=0; i<=maxIndex && found<=index; i++){
-    if(data.charAt(i)==separator || i==maxIndex){
+    0, -1
+  };
+  int maxIndex = data.length() - 1;
+  for (int i = 0; i <= maxIndex && found <= index; i++) {
+    if (data.charAt(i) == separator || i == maxIndex) {
       found++;
-      strIndex[0] = strIndex[1]+1;
-      strIndex[1] = (i == maxIndex) ? i+1 : i;
+      strIndex[0] = strIndex[1] + 1;
+      strIndex[1] = (i == maxIndex) ? i + 1 : i;
     }
   }
-  return found>index ? data.substring(strIndex[0], strIndex[1]) : "";
+  return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
 }
 
