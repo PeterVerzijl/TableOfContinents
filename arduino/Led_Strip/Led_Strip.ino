@@ -37,10 +37,12 @@ void setup() {
   Serial.begin(9600);
   //define the type of chip
   FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
+  setupSteppers();
 }
 
 void loop() {
-
+  setHeight(0,90);
+  setHeight(0,10);
   //depending on the input, make the leds be set to another value
   readSerial();
   led(0,numbers[0][0],numbers[0][1],numbers[0][2]); 
