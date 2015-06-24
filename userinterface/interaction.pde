@@ -19,21 +19,19 @@ void updateData(menuOpt mo) {
   if (mo.rightside)
     for (int i = 0; i < dl.dataPoints.length; i++) {
       if (mo.text.equals("SEXLIFE SATISFACTION")) {
-        color c1 = color(#ff0201);
-        color c2 = color(#fff746);
+        color c1 = color(#fff746);
+        color c2 = color(#ff0201);
         float[] stats = new float[6];
         for (int j = 0; j < dl.dataPoints.length; j++) stats[j] = dl.dataPoints[j].sexLifeSatisfaction;
         float max = max(stats);
         float min = min(stats);
 
-        asic = lerpColor(c1, c2, norm(stats[0], min, max));
-        eurc = lerpColor(c1, c2, norm(stats[1], min, max));
-        samc = lerpColor(c1, c2, norm(stats[2], min, max));
-        namc = lerpColor(c1, c2, norm(stats[3], min, max));
-        afrc = lerpColor(c1, c2, norm(stats[4], min, max));
-        ocec = lerpColor(c1, c2, norm(stats[5], min, max));
-
-        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+        asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
+        eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
+        samc = lerpColor(c1, c2, norm(stats[5], min, max));//5
+        namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
+        afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
+        ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
         break;
       }
@@ -46,34 +44,30 @@ void updateData(menuOpt mo) {
         float max = max(stats);
         float min = min(stats);
 
-        asic = lerpColor(c1, c2, norm(stats[0], min, max));
-        eurc = lerpColor(c1, c2, norm(stats[1], min, max));
-        samc = lerpColor(c1, c2, norm(stats[2], min, max));
-        namc = lerpColor(c1, c2, norm(stats[3], min, max));
-        afrc = lerpColor(c1, c2, norm(stats[4], min, max));
-        ocec = lerpColor(c1, c2, norm(stats[5], min, max));
-
-        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+        asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
+        eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
+        samc = lerpColor(c1, c2, norm(stats[5], min, max));//5
+        namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
+        afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
+        ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
         break;
       }
 
       if (mo.text.equals("HOMICIDE RATE")) {
-        color c1 = color(#ff0c0d);
-        color c2 = color(#249afe);
+        color c1 = color(#249afe);
+        color c2 = color(#ff0c0d);
         float[] stats = new float[6];
         for (int j = 0; j < dl.dataPoints.length; j++) stats[j] = dl.dataPoints[j].homocideRate;
         float max = max(stats);
         float min = min(stats);
 
-        asic = lerpColor(c1, c2, norm(stats[0], min, max));
-        eurc = lerpColor(c1, c2, norm(stats[1], min, max));
-        samc = lerpColor(c1, c2, norm(stats[2], min, max));
-        namc = lerpColor(c1, c2, norm(stats[3], min, max));
-        afrc = lerpColor(c1, c2, norm(stats[4], min, max));
-        ocec = lerpColor(c1, c2, norm(stats[5], min, max));
-
-        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+        asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
+        eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
+        samc = lerpColor(c1, c2, norm(stats[5], min, max));//5
+        namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
+        afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
+        ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
         break;
       }
@@ -86,14 +80,12 @@ void updateData(menuOpt mo) {
         float max = max(stats);
         float min = min(stats);
 
-        asic = lerpColor(c1, c2, norm(stats[0], min, max));
-        eurc = lerpColor(c1, c2, norm(stats[1], min, max));
-        samc = lerpColor(c1, c2, norm(stats[2], min, max));
-        namc = lerpColor(c1, c2, norm(stats[3], min, max));
-        afrc = lerpColor(c1, c2, norm(stats[4], min, max));
-        ocec = lerpColor(c1, c2, norm(stats[5], min, max));
-
-        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+        asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
+        eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
+        samc = lerpColor(c1, c2, norm(stats[5], min, max));//5
+        namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
+        afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
+        ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
         break;
       }
@@ -106,16 +98,14 @@ void updateData(menuOpt mo) {
         float max = max(stats);
         float min = min(stats);
 
-        asic = lerpColor(c1, c2, norm(stats[0], min, max));
-        eurc = lerpColor(c1, c2, norm(stats[1], min, max));
-        samc = lerpColor(c1, c2, norm(stats[2], min, max));
-        namc = lerpColor(c1, c2, norm(stats[3], min, max));
-        afrc = lerpColor(c1, c2, norm(stats[4], min, max));
-        ocec = lerpColor(c1, c2, norm(stats[5], min, max));
+        asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
+        eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
+        samc = lerpColor(c1, c2, norm(stats[5], min, max));//5
+        namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
+        afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
+        ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
         println(norm(stats[5], min, max), norm(stats[3], min, max), norm(stats[1], min, max), norm(stats[2], min, max), norm(stats[0], min, max), norm(stats[4], min, max));
-
-        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
 
         break;
       }
@@ -127,32 +117,17 @@ void updateData(menuOpt mo) {
         for (int j = 0; j < dl.dataPoints.length; j++) stats[j] = dl.dataPoints[j].overweight;
         float max = max(stats);
         float min = min(stats);
-
-        asic = lerpColor(c1, c2, norm(stats[0], min, max));
-        eurc = lerpColor(c1, c2, norm(stats[1], min, max));
-        samc = lerpColor(c1, c2, norm(stats[2], min, max));
-        namc = lerpColor(c1, c2, norm(stats[3], min, max));
-        afrc = lerpColor(c1, c2, norm(stats[4], min, max));
-        ocec = lerpColor(c1, c2, norm(stats[5], min, max));
-
-        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+        
+        asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
+        eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
+        samc = lerpColor(c1, c2, norm(stats[5], min, max));//5
+        namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
+        afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
+        ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
         break;
       }
     }
-}
-
-void debug(menuOpt mo, float[] stats, color asix, color eurx, color samx, color namx, color afrx, color ocex, DataPoint[] dp) {
-  println("=====================\n");
-  println(mo.text.substring(0, 4), "\t", "Value", "\t", "R", "\t", "G", "\t", "B");
-  println("asia\t", stats[0], "\t", red(asix), "\t", green(asix), "\t", blue(asix));
-  println("euro\t", (stats[1]), "\t", red(eurx), "\t", green(eurx), "\t", blue(eurx));
-  println("south\t", (stats[2]), "\t", red(samx), "\t", green(samx), "\t", blue(samx));
-  println("north\t", (stats[3]), "\t", red(namx), "\t", green(namx), "\t", blue(asix));
-  println("africa\t", (stats[4]), "\t", red(afrx), "\t", green(afrx), "\t", blue(afrx));
-  println("ocea\t", (stats[5]), "\t", red(ocex), "\t", green(ocex), "\t", blue(ocex));
-  println("Min:", min(stats), "\t", "Max:", max(stats));
-  printArray(dp);
 }
 
 void mousePressed() {
