@@ -7,10 +7,18 @@ void led(int cont, int R, int G, int B) {
 void readSerial() {
   if (Serial.available()) {
     input = "";
+    nCount = 0;
+    cCount = 0;
     while (Serial.available()) {
       if (Serial.available() > 0) {
         char c = Serial.read();
         input += c;
+        if (c == 'n') {
+          nCount ++;
+        }
+        if (c == ',') {
+          cCount ++;
+        }
       }
       //loop through the continents
       for (int i = 0; i < continentSize; i++) {
@@ -20,14 +28,15 @@ void readSerial() {
           //spit the continent string into smaller strings
           String val = getValue(conti, ',', j); //, is the split identifier
           //convert string to int and put it in the matrix
-          numbers[i][j] = val.toInt();
-          //Serial.println(numbers[i][j]);
-          if (val == "H"){
-            Serial.write("HANDSHAKE");
+          if (nCount == 6 && ( cCount == 18 || cCount == 24)) {
+            numbers[i][j] = val.toInt();
           }
         }
-      }
+      } 
     }
+    if (nCount != 6 && cCount != 18 && cCount !=24) {
+        Serial.write("R");  //send R for resent
+      }
   }
 }
 //DO NOT TOUCH THIS

@@ -1,7 +1,7 @@
 #include "FastLED.h"
 
 // total led's in series
-#define NUM_LEDS 10
+#define NUM_LEDS 2
 
 // define updates per second
 #define updatesPerSecond 100
@@ -27,6 +27,8 @@ int numbers[6][4];
 String input;
 int continentSize = 6; //amount of continents
 int protocolSize = 4; //amount of values sent like this R,G,B,height
+int nCount =0;  //error correction "n" count
+int cCount =0;  //error correction "," count
 
 // Define the array of leds
 CRGB leds[NUM_LEDS];
