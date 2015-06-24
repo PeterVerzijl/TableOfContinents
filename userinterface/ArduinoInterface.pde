@@ -10,16 +10,26 @@ public class ArduinoInterface {
   private String lastMessage = "";
   private Serial serial;
 
-  private int continentHeights[];
-  private color continentColors[];
-
+  private int continentHeights[] = {0, 0, 0, 0, 0, 0};
+  private color continentColors[] = {
+    color(255, 0, 255),
+    color(0, 0, 255),
+    color(255, 0, 0),
+    color(0, 255, 255),
+    color(255, 255, 0),
+    color(0, 255, 0)
+  };
+  
   public ArduinoInterface(PApplet applet) {
     // Initialize the serial.
-    String arduinoPort = Serial.list()[0];
-    serial = new Serial(applet, arduinoPort, 9800);
-    serial.bufferUntil('\n');
-    // Init the varialbes
-
+    if (Serial.list().length <= 0) {
+      println("Error, no arduino found!");
+    }
+    else {
+      String arduinoPort = Serial.list()[0];
+      serial = new Serial(applet, arduinoPort, 9800);
+      serial.bufferUntil('\n');
+    }
   }
 
   /* R, G, B, Height
@@ -41,7 +51,7 @@ public class ArduinoInterface {
       int r = (c >> 16) & 0xFF;      // Faster way of getting red(c);
       int g = (c >> 8) & 0xFF;
       int b = c & 0xFF;
-      message =
+      message +=
         str(r) + ',' +
         str(g) + ',' +
         str(b) + ',' +
@@ -88,8 +98,8 @@ public class ArduinoInterface {
   
   public void sendString(String s) {
     lastMessage = s;
-    serial.write(s);
-    print("Serial: " + s);
+    if (serial != null) serial.write(s);
+    println("Serial: " + s);
   }
     
   

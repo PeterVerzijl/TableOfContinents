@@ -3,8 +3,8 @@ void updateData(menuOpt mo) {
   mo.selected = true;
 
   if (!mo.rightside) {
+    float[] data = new float[continents.length];
     for (int i = 0; i < continents.length; i++) {
-      float[] data = new float[continents.length];
       for (int j = 0; j < statsOpts.length; j++) {
         if (statsOpts[j].subtext.toLowerCase().equals(continents[i].dataPoint.continentName.toLowerCase())) {
           if (mo.text.equals("CIGARETTES")) { statsOpts[j].headline = str(continents[i].dataPoint.cigarettes) + "%"; data[i] = continents[i].dataPoint.cigarettes; }
@@ -15,8 +15,8 @@ void updateData(menuOpt mo) {
           else if (mo.text.equals("CANNABIS")) { statsOpts[j].headline = str(continents[i].dataPoint.cannabis) + "%"; data[i] = continents[i].dataPoint.cannabis; }
         }
       }
-      arduino.SetDrugType(data);
     }
+    arduino.SetDrugType(data);
   }
 
 
@@ -39,7 +39,7 @@ void updateData(menuOpt mo) {
 
         arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
 
-        break;
+        return;
       }
 
       if (mo.text.equals("UFO SIGHTINGS")) {
@@ -59,7 +59,7 @@ void updateData(menuOpt mo) {
 
         arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
 
-        break;
+        return;
       }
 
       if (mo.text.equals("HOMICIDE RATE")) {
@@ -79,7 +79,7 @@ void updateData(menuOpt mo) {
 
         arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
 
-        break;
+        return;
       }
 
       if (mo.text.equals("DRUG RELATED DEATHS")) {
@@ -99,7 +99,7 @@ void updateData(menuOpt mo) {
 
         arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
 
-        break;
+        return;
       }
 
       if (mo.text.equals("GDP PER CAPITA")) {
@@ -121,7 +121,7 @@ void updateData(menuOpt mo) {
 
         println(norm(stats[5], min, max), norm(stats[3], min, max), norm(stats[1], min, max), norm(stats[2], min, max), norm(stats[0], min, max), norm(stats[4], min, max));
 
-        break;
+        return;
       }
 
       if (mo.text.equals("OVERWEIGHT")) {
@@ -141,7 +141,7 @@ void updateData(menuOpt mo) {
 
         arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
 
-        break;
+        return;
       }
     }
   }

@@ -88,7 +88,7 @@ void setup() {
   }
 
   // Initialize arduino
-  //arduino = new ArduinoInterface(this);
+  arduino = new ArduinoInterface(this);
 }
 
 void draw() {
