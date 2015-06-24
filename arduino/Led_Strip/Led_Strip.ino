@@ -27,6 +27,8 @@ int numbers[6][4];
 String input;
 int continentSize = 6; //amount of continents
 int protocolSize = 4; //amount of values sent like this R,G,B,height
+int nCount =0;
+int cCount =0;
 
 // Define the array of leds
 CRGB leds[NUM_LEDS];
