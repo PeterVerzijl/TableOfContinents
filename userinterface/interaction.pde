@@ -19,7 +19,6 @@ void updateData(menuOpt mo) {
   if (mo.rightside)
     for (int i = 0; i < dl.dataPoints.length; i++) {
       if (mo.text.equals("SEXLIFE SATISFACTION")) {
-        println(mo.text);
         color c1 = color(#ff0201);
         color c2 = color(#fff746);
         float[] stats = new float[6];
@@ -34,13 +33,12 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[4], min, max));
         ocec = lerpColor(c1, c2, norm(stats[5], min, max));
 
-        for (int j = 0; j < dl.dataPoints.length; j++) println(dl.dataPoints[j].continentName);
-        println(stats);
+        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+
         break;
       }
 
       if (mo.text.equals("UFO SIGHTINGS")) {
-        println(mo.text);
         color c1 = color(#ffffff);
         color c2 = color(#9845ff);
         float[] stats = new float[6];
@@ -55,13 +53,12 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[4], min, max));
         ocec = lerpColor(c1, c2, norm(stats[5], min, max));
 
-        for (int j = 0; j < dl.dataPoints.length; j++) println(dl.dataPoints[j].continentName);
-        println(stats);
+        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+
         break;
       }
 
       if (mo.text.equals("HOMICIDE RATE")) {
-        println(mo.text);
         color c1 = color(#ff0c0d);
         color c2 = color(#249afe);
         float[] stats = new float[6];
@@ -76,13 +73,12 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[4], min, max));
         ocec = lerpColor(c1, c2, norm(stats[5], min, max));
 
-        for (int j = 0; j < dl.dataPoints.length; j++) println(dl.dataPoints[j].continentName);
-        println(stats);
+        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+
         break;
       }
 
       if (mo.text.equals("DRUG RELATED DEATHS")) {
-        println(mo.text);
         color c1 = color(#ff6508);
         color c2 = color(#91ff78);
         float[] stats = new float[6];
@@ -97,36 +93,34 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[4], min, max));
         ocec = lerpColor(c1, c2, norm(stats[5], min, max));
 
-        for (int j = 0; j < dl.dataPoints.length; j++) println(dl.dataPoints[j].continentName);
-        println(stats);
+        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+
         break;
       }
 
       if (mo.text.equals("GDP PER CAPITA")) {
-        println(mo.text);
         color c1 = color(#ffffff);
         color c2 = color(#36ff01);
         float[] stats = new float[6];
         for (int j = 0; j < dl.dataPoints.length; j++) stats[j] = dl.dataPoints[j].GDP;
         float max = max(stats);
         float min = min(stats);
-println(min, max);
+
         asic = lerpColor(c1, c2, norm(stats[0], min, max));
         eurc = lerpColor(c1, c2, norm(stats[1], min, max));
         samc = lerpColor(c1, c2, norm(stats[2], min, max));
         namc = lerpColor(c1, c2, norm(stats[3], min, max));
         afrc = lerpColor(c1, c2, norm(stats[4], min, max));
         ocec = lerpColor(c1, c2, norm(stats[5], min, max));
-        
-        println(norm(stats[5], min, max),norm(stats[3], min, max),norm(stats[1], min, max),norm(stats[2], min, max),norm(stats[0], min, max),norm(stats[4], min, max));
 
-        for (int j = 0; j < dl.dataPoints.length; j++) println(dl.dataPoints[j].continentName);
-        println(stats);
+        println(norm(stats[5], min, max), norm(stats[3], min, max), norm(stats[1], min, max), norm(stats[2], min, max), norm(stats[0], min, max), norm(stats[4], min, max));
+
+        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+
         break;
       }
 
       if (mo.text.equals("OVERWEIGHT")) {
-        println(mo.text);
         color c1 = color(#abff89);
         color c2 = color(#ff309b);
         float[] stats = new float[6];
@@ -141,13 +135,24 @@ println(min, max);
         afrc = lerpColor(c1, c2, norm(stats[4], min, max));
         ocec = lerpColor(c1, c2, norm(stats[5], min, max));
 
-        for (int j = 0; j < dl.dataPoints.length; j++) println(dl.dataPoints[j].continentName);
-        println(stats);
+        debug(mo, stats, asic, eurc, samc, namc, afrc, ocec, dl.dataPoints);
+
         break;
       }
-
     }
-    
+}
+
+void debug(menuOpt mo, float[] stats, color asix, color eurx, color samx, color namx, color afrx, color ocex, DataPoint[] dp) {
+  println("=====================\n");
+  println(mo.text.substring(0, 4), "\t", "Value", "\t", "R", "\t", "G", "\t", "B");
+  println("asia\t", stats[0], "\t", red(asix), "\t", green(asix), "\t", blue(asix));
+  println("euro\t", (stats[1]), "\t", red(eurx), "\t", green(eurx), "\t", blue(eurx));
+  println("south\t", (stats[2]), "\t", red(samx), "\t", green(samx), "\t", blue(samx));
+  println("north\t", (stats[3]), "\t", red(namx), "\t", green(namx), "\t", blue(asix));
+  println("africa\t", (stats[4]), "\t", red(afrx), "\t", green(afrx), "\t", blue(afrx));
+  println("ocea\t", (stats[5]), "\t", red(ocex), "\t", green(ocex), "\t", blue(ocex));
+  println("Min:", min(stats), "\t", "Max:", max(stats));
+  printArray(dp);
 }
 
 void mousePressed() {
