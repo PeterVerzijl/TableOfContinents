@@ -1,3 +1,12 @@
+/*
+example command: 
+255,255,0,10,n200,255,100,90,n255,255,0,10,n255,255,0,0,n255,255,0,10,n255,255,0,0,n
+
+30,255,0,90,n170,255,90,70,n255,255,0,10,n255,255,0,0,n255,255,0,10,n255,255,0,0,n
+
+255,120,50,50,n200,0,255,5,n255,255,0,10,n255,255,0,0,n255,255,0,10,n255,255,0,0,n
+*/
+
 #include "FastLED.h"
 
 // total led's in series
@@ -41,8 +50,10 @@ void setup() {
 }
 
 void loop() {
-  setHeight(0,90);
-  setHeight(0,10);
+  
+  setHeight(0,int(random(20,70)));
+  setHeight(1,int(random(20,70)));
+  
   //depending on the input, make the leds be set to another value
   readSerial();
   led(0,numbers[0][0],numbers[0][1],numbers[0][2]); 

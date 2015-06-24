@@ -30,6 +30,7 @@ void readSerial() {
           //convert string to int and put it in the matrix
           if (nCount == 6 && ( cCount == 18 || cCount == 24)) {
             numbers[i][j] = val.toInt();
+            Serial.println(numbers[i][j]);
           }
         }
       } 
@@ -37,6 +38,7 @@ void readSerial() {
     if (nCount != 6 && cCount != 18 && cCount !=24) {
         Serial.write("R");  //send R for resent
       }
+      setHeight(0, numbers[0][3]);
   }
 }
 //DO NOT TOUCH THIS

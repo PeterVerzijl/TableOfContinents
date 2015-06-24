@@ -1,8 +1,9 @@
-#define AMOUNTSTEPPERS 1
+#define AMOUNTSTEPPERS 2
 #define MAXHEIGHTINSTEPS 1000 //TODO SETCORRECT NUMBER
 #define MAXHEIGHT 100.0
 #define DOWN true
 #define UP false
+#define STEPPERDELAY 1000
 
 typedef struct Stepper Stepper;
 
@@ -20,6 +21,10 @@ void setupSteppers(){
   steppers[0].directionPort = 2;
   steppers[0].PWMPort = 4;
   steppers[0].caliPort = 8;
+  
+  steppers[1].directionPort = 5;
+  steppers[1].PWMPort = 6;
+  steppers[1].caliPort = 7;
 
 
   //set ports and calibrate all steppers
@@ -39,9 +44,9 @@ void rotate(int stepper,boolean down,int steps){ //rotate in direction right == 
   for (int i = 0; i < steps; i++) {
     if(!bottom(stepper)){
       digitalWrite(steppers[stepper].PWMPort, LOW);
-      delayMicroseconds(1000);
+      delayMicroseconds(STEPPERDELAY);
       digitalWrite(steppers[stepper].PWMPort, HIGH);
-      delayMicroseconds(1000);
+      delayMicroseconds(STEPPERDELAY);
     }
     else{
       upFromBottom(stepper);
@@ -67,9 +72,9 @@ void upFromBottom(int stepper){
   digitalWrite(steppers[stepper].directionPort, LOW); //check if this is right
   while(bottom(stepper)){
     digitalWrite(steppers[stepper].PWMPort, LOW);
-    delayMicroseconds(1000);
+    delayMicroseconds(STEPPERDELAY);
     digitalWrite(steppers[stepper].PWMPort, HIGH);
-    delayMicroseconds(1000);
+    delayMicroseconds(STEPPERDELAY);
     steppers[stepper].height += 1.0 / MAXHEIGHT;
   } 
   Serial.println(steppers[stepper].height);
