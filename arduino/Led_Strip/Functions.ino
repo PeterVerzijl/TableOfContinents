@@ -28,13 +28,13 @@ void readSerial() {
           //spit the continent string into smaller strings
           String val = getValue(conti, ',', j); //, is the split identifier
           //convert string to int and put it in the matrix
-          if (nCount == 6 && cCount == 18) {
+          if (nCount == 6 && ( cCount == 18 || cCount == 24)) {
             numbers[i][j] = val.toInt();
           }
         }
       } 
     }
-    if (nCount != 6 && cCount != 18) {
+    if (nCount != 6 && cCount != 18 && cCount !=24) {
         Serial.write("R");  //send R for resent
       }
   }
