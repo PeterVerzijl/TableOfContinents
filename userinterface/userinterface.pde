@@ -82,7 +82,7 @@ void setup() {
   }
   
   // Initialize arduino
-  arduino = new ArduinoInterface(this);
+  //arduino = new ArduinoInterface(this);
 }
 
 void draw() {
@@ -111,56 +111,6 @@ void draw() {
   }
 }
 
-/*
-void mousePressed() {    
-  PVector m = new PVector(mouseX, mouseY+50);
-  
-  for(int i = 0; i < menuOpts.length; i++){
-    menuOpt mo = menuOpts[i];
-    PVector pos = (mo.rightside) ? new PVector(width-menuSize.x, mo.y) : new PVector(0, mo.y);
-    boolean hit = pointInRect(m, pos, menuSize);
-    if (hit) {
-      for (int j = 0; j < menuOpts.length; j++) if (menuOpts[j].rightside == mo.rightside) menuOpts[j].selected = false;
-      mo.selected = true;
-    }
-  }
-}
-
-boolean pointInRect(PVector p, PVector pos, PVector size) {
-  if (p.x < pos.x) return false;
-  if (p.x > pos.x+size.x) return false;
-  if (p.y < pos.y) return false;
-  if (p.y > pos.y+size.y) return false;
-  return true;
-}
-
-void drawGears() {
-  dashedCircle(width/2, height/2+70, 300, 6, 4, 10, millis()/10000.0);
-  strokeWeight(5);
-  stroke(255, 20);
-  noFill();
-  ellipse(width/2, height/2+70, 280*2, 280*2);
-  dashedCircle(width/2, height/2+70, 240, 10, 10, 20, -millis()/20000.0);
-}
-
-void drawInfo() {
-  fill(0, 100);
-  noStroke();
-  rect(410, 60, 460, 90);
-  textAlign(CENTER);
-  textSize(24);
-  textFont(light24);
-  textLeading(24);
-  fill(255);
-  text("CHOOSE A DRUG ON THE LEFT AND\nA POSSIBLE CORRELATION ON THE RIGHT", width/2, 100);
-}
-
-void drawMenu() {
-  drawStatsOpt(0, 100, "DRUG USE", "PER CAPITA");
-
-  for (int i = 0; i < menuOpts.length; i++) menuOpts[i].update();
-}
-*/
 void drawMenuOpt(int y, String text, boolean rightside, boolean selected) {
   int x = rightside ? width - 216 : 0;
   float tx = rightside ? width - 10 : 10;
@@ -185,16 +135,7 @@ void drawMenuOpt(int y, String text, boolean rightside, boolean selected) {
 
   image(bar, x, y-12);
 }
-/*
-void drawStats() {
-  drawStatsOpt(555, 325, "12.2%", "EUROPE");
-  drawStatsOpt(570, 480, "64.8%", "AFRICA");
-  drawStatsOpt(790, 330, "23.5%", "ASIA");
-  drawStatsOpt(385, 520, "34.0%", "SOUTH AMERICA");
-  drawStatsOpt(350, 315, "14.2%", "NORTH AMERICA");
-  drawStatsOpt(855, 560, "47.1%", "OCEANIAN");
-}
-*/
+
 void drawStatsOpt(int x, int y, String headline, String subtext) {
   pushStyle();
   pushMatrix();
@@ -226,41 +167,6 @@ void drawStatsOpt(int x, int y, String headline, String subtext) {
   popStyle();
 }
 
-
-/* Method of dashing circle abbreviated from */
-/* http://www.openprocessing.org/sketch/28215 */
-/*
-void dashedCircle(int x, int y, float radius, int dashWidth, int dashSpacing, int weight, float rot) {
-  pushStyle();
-  pushMatrix();
-  translate(x, y);
-  rotate(rot);
-  noFill();
-  stroke(255, 20);
-  strokeWeight(weight);
-  strokeCap(SQUARE);
-
-  int steps = 200;
-  int dashPeriod = dashWidth + dashSpacing;
-  boolean lastDashed = false;
-  for (int i = 0; i < steps; i++) {
-    boolean curDashed = (i % dashPeriod) < dashWidth;
-    if (curDashed && !lastDashed) beginShape();
-
-    if (!curDashed && lastDashed) endShape();
-
-    if (curDashed) {
-      float theta = map(i, 0, steps, 0, TWO_PI);
-      vertex(cos(theta) * radius, sin(theta) * radius);
-    }
-    lastDashed = curDashed;
-  }
-  if (lastDashed) endShape();
-
-  popMatrix();
-  popStyle();
-}
-*/
 
 void serialEvent(Serial port)
 {
