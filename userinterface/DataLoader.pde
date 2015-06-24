@@ -4,9 +4,7 @@
  * @since       2015-06-22          (the version of the package this class was first added to)
  */
 public class DataLoader {
-  
-  DataPoint[] dataPoints;
-  
+    
   // Constructor
   public DataLoader() {}
 
@@ -58,7 +56,6 @@ public class DataLoader {
         float(tableCells[13])   // Opiates
       );
     }
-    dataPoints = returnArray;
     return returnArray;
   }
 }

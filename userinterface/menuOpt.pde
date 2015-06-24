@@ -40,4 +40,3 @@ class menuOpt {
     image(bar, x, y-12);
   }
 }
-

@@ -55,4 +55,3 @@ public class DataPoint {
     opiates             = _opiates;
   }
 }
-
