@@ -1,7 +1,7 @@
 #include "FastLED.h"
 
 // total led's in series
-#define NUM_LEDS 10
+#define NUM_LEDS 2
 
 // define updates per second
 #define updatesPerSecond 100
