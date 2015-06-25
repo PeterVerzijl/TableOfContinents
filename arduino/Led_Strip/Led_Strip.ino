@@ -10,7 +10,7 @@ example command:
 #include "FastLED.h"
 
 // total led's in series
-#define NUM_LEDS 4
+#define NUM_LEDS 16
 
 // define updates per second
 #define updatesPerSecond 100
@@ -20,7 +20,7 @@ int fadeValue = 1;
 unsigned long counter = 0;
 
 // led's per continent (ideal: total should add up to NUM_LEDS
-int continent [6] = {4, 6, 8, 10, 11, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
+int continent [6] = {4, 6, 10, 12, 14, 16};  //order: first continent -> last continent (1,2 - 3,4, etc)
 
 //define the data pin
 #define DATA_PIN 10

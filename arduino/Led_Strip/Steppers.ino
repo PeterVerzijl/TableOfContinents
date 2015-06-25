@@ -62,7 +62,7 @@ void setupSteppers(){
     pinMode(steppers[i].caliPort, INPUT);
     calib(i);
   }
-  Serial.write("READY");
+  Serial.write("READY\n");
 }
 
 void rotate(int stepper,boolean down,int steps){ //rotate in direction right == true; left == false and for x amount of steps
