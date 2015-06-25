@@ -4,7 +4,7 @@ example command:
 
 30,255,0,90,n170,255,90,70,n255,255,0,10,n255,255,0,0,n255,255,0,10,n255,255,0,0,n
 
-255,120,50,70,n200,0,255,70,n255,255,0,70,n25,255,0,70,n255,255,0,70,n255,55,0,70,n
+255,120,50,50,n200,0,255,5,n255,255,0,10,n255,255,0,0,n255,255,0,10,n255,255,0,0,n
 */
 
 #include "FastLED.h"
@@ -13,7 +13,7 @@ example command:
 #define NUM_LEDS 16
 
 // define updates per second
-#define updatesPerSecond 100
+#define updatesPerSecond 33
 
 // fade_duration 1 = 2,55sec, 2 = 1,27sec, 3 = 0,85sec, etc
 int fadeValue = 1;
