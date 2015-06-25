@@ -7,12 +7,25 @@ void updateData(menuOpt mo) {
     for (int i = 0; i < continents.length; i++) {
       for (int j = 0; j < statsOpts.length; j++) {
         if (statsOpts[j].subtext.toLowerCase().equals(continents[i].dataPoint.continentName.toLowerCase())) {
-          if (mo.text.equals("CIGARETTES")) { statsOpts[j].headline = str(continents[i].dataPoint.cigarettes) + "%"; data[i] = continents[i].dataPoint.cigarettes; }
-          else if (mo.text.equals("OPIATES")) { statsOpts[j].headline = str(continents[i].dataPoint.opiates) + "%";  data[i] = continents[i].dataPoint.opiates; }
-          else if (mo.text.equals("AMPHETAMINE")) { statsOpts[j].headline = str(continents[i].dataPoint.amphetamine) + "%"; data[i] = continents[i].dataPoint.amphetamine; }
-          else if (mo.text.equals("COCAINE")) { statsOpts[j].headline = str(continents[i].dataPoint.cocaine) + "%"; data[i] = continents[i].dataPoint.cocaine; }
-          else if (mo.text.equals("ECSTACY")) { statsOpts[j].headline = str(continents[i].dataPoint.ecstacy) + "%"; data[i] = continents[i].dataPoint.ecstacy; }
-          else if (mo.text.equals("CANNABIS")) { statsOpts[j].headline = str(continents[i].dataPoint.cannabis) + "%"; data[i] = continents[i].dataPoint.cannabis; }
+          if (mo.text.equals("CIGARETTES")) { 
+            statsOpts[j].headline = str(continents[i].dataPoint.cigarettes) + "%"; 
+            data[i] = continents[i].dataPoint.cigarettes;
+          } else if (mo.text.equals("OPIATES")) { 
+            statsOpts[j].headline = str(continents[i].dataPoint.opiates) + "%";  
+            data[i] = continents[i].dataPoint.opiates;
+          } else if (mo.text.equals("AMPHETAMINE")) { 
+            statsOpts[j].headline = str(continents[i].dataPoint.amphetamine) + "%"; 
+            data[i] = continents[i].dataPoint.amphetamine;
+          } else if (mo.text.equals("COCAINE")) { 
+            statsOpts[j].headline = str(continents[i].dataPoint.cocaine) + "%"; 
+            data[i] = continents[i].dataPoint.cocaine;
+          } else if (mo.text.equals("ECSTACY")) { 
+            statsOpts[j].headline = str(continents[i].dataPoint.ecstacy) + "%"; 
+            data[i] = continents[i].dataPoint.ecstacy;
+          } else if (mo.text.equals("CANNABIS")) { 
+            statsOpts[j].headline = str(continents[i].dataPoint.cannabis) + "%"; 
+            data[i] = continents[i].dataPoint.cannabis;
+          }
         }
       }
     }
@@ -37,7 +50,10 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
-        arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
+        arduino.SetColors(new color[] {
+          asic, eurc, samc, namc, afrc, ocec
+        }
+        );
 
         return;
       }
@@ -57,7 +73,10 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
-        arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
+        arduino.SetColors(new color[] {
+          asic, eurc, samc, namc, afrc, ocec
+        }
+        );
 
         return;
       }
@@ -77,7 +96,10 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
-        arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
+        arduino.SetColors(new color[] {
+          asic, eurc, samc, namc, afrc, ocec
+        }
+        );
 
         return;
       }
@@ -97,7 +119,9 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
-        arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
+        arduino.SetColors(new color[] {
+          asic, eurc, samc, namc, afrc, ocec
+        });
 
         return;
       }
@@ -117,11 +141,15 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
-        arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
+        arduino.SetColors(new color[] {
+          asic, eurc, samc, namc, afrc, ocec
+        }
+        );
 
         println(norm(stats[5], min, max), norm(stats[3], min, max), norm(stats[1], min, max), norm(stats[2], min, max), norm(stats[0], min, max), norm(stats[4], min, max));
 
         return;
+        break;
       }
 
       if (mo.text.equals("OVERWEIGHT")) {
@@ -139,7 +167,10 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
-        arduino.SetColors(new color[]{asic, eurc, samc, namc, afrc, ocec});
+        arduino.SetColors(new color[] {
+          asic, eurc, samc, namc, afrc, ocec
+        }
+        );
 
         return;
       }
@@ -168,3 +199,4 @@ boolean pointInRect(PVector p, PVector pos, PVector size) {
   if (p.y > pos.y+size.y) return false;
   return true;
 }
+

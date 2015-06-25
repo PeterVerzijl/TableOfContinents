@@ -2,12 +2,20 @@ PImage bg;
 PImage eur, sam, nam, oce, afr, asi;
 color eurc, samc, namc, ocec, afrc, asic;
 PImage out;
+PImage scale;
 PImage barleft;
 PImage barright;
 PFont bold36; // Stats head
 PFont light18; //Stats sub
 PFont light24; // Menu unselected
 PVector menuSize;
+//Legend properties
+float scaleMin;
+float scaleMax;
+color scaleC1;
+color scaleC2;
+PVector scalePos1;
+PVector scalePos2;
 
 menuOpt[] menuOpts = new menuOpt[12];
 statsOpt[] statsOpts = new statsOpt[7];
@@ -44,6 +52,7 @@ void setup() {
   asic = color(0, 250, 250);
 
   out = loadImage("outline.png");
+  scale = loadImage("scale.png");
 
   bold36 = loadFont("SourceSansPro-Bold-36.vlw");
   light18 = loadFont("SourceSansPro-Light-18.vlw");
@@ -77,7 +86,6 @@ void setup() {
   statsOpts[5] = new statsOpt(855, 560, "47.1%", "OCEANIA");
   statsOpts[6] = new statsOpt(0, 100, "DRUG USE", "PER CAPITA");
 
-
   // Fill continents array with continents
   DataPoint[] points = dl.load("data.csv");
   for(int i = 0; i < continents.length; i++)
@@ -85,6 +93,18 @@ void setup() {
       continents[i] = new Continent(
         continentNames[i], i + 1, i + 1, 
         points[i]);
+  scaleMin = 0;
+  scaleMax = 100;
+  scaleC1 = color(235, 235, 235);
+  scaleC2 = color(123, 34, 56);
+  scalePos1 = new PVector(1030, 140);
+  scalePos2 = new PVector(1260, 140);
+
+  DataPoint[] dataPoints = dl.load("data.csv");
+  continents = new Continent[dataPoints.length];
+  for (int i = 0; i < dataPoints.length; i++)
+  {
+    continents[i] = new Continent(dataPoints[i].continentName, i + 1, i + 1, dataPoints[i]);
   }
 
   // Initialize arduino
@@ -107,6 +127,7 @@ void draw() {
   drawStats();
   drawMenu();
   drawInfo();
+  drawScale();
 
   noFill();
   stroke(255, 0, 0);
@@ -179,3 +200,4 @@ void serialEvent(Serial port)
 {
   arduino.serialEvent(port);
 }
+

@@ -9,6 +9,26 @@ void drawTintedImage(PImage img, color col){
   buff.clear();
 }
 
+void drawScale(){
+  image(scale, 0, 0);
+  
+  fill(0, 255*.3);
+  noStroke();
+  rect(1030, 140, 80, 40);
+  rect(1260-80, 140, 80, 40);
+  fill(255);
+  
+  textAlign(LEFT, TOP);
+  textFont(bold36);
+  float tw = textWidth(str(scaleMin));
+  text(scaleMin, 1030, 140);
+  
+  
+  textAlign(RIGHT, TOP);
+  tw = textWidth(str(scaleMin));
+  text(scaleMax, 1260, 140);
+}
+
 void drawDebugOutline() {
   noFill();
   stroke(255, 0, 0);
