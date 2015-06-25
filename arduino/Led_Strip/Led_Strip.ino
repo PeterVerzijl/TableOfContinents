@@ -10,7 +10,7 @@ example command:
 #include "FastLED.h"
 
 // total led's in series
-#define NUM_LEDS 2
+#define NUM_LEDS 4
 
 // define updates per second
 #define updatesPerSecond 100
@@ -20,7 +20,7 @@ int fadeValue = 1;
 unsigned long counter = 0;
 
 // led's per continent (ideal: total should add up to NUM_LEDS
-int continent [6] = {2, 4, 8, 10, 11, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
+int continent [6] = {4, 6, 8, 10, 11, 12};  //order: first continent -> last continent (1,2 - 3,4, etc)
 
 //define the data pin
 #define DATA_PIN 10
@@ -46,22 +46,17 @@ void setup() {
   Serial.begin(9600);
   //define the type of chip
   FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
-  setupSteppers();
+setupSteppers();
 }
 
 void loop() {
-  
-  setHeight(0,int(random(20,70)));
-  setHeight(1,int(random(20,70)));
-  
+
   //depending on the input, make the leds be set to another value
   readSerial();
-  led(0,numbers[0][0],numbers[0][1],numbers[0][2]); 
-  led(1,numbers[1][0],numbers[1][1],numbers[1][2]); 
-  led(2,numbers[2][0],numbers[2][1],numbers[2][2]); 
-  led(3,numbers[3][0],numbers[3][1],numbers[3][2]);
-  led(4,numbers[4][0],numbers[4][1],numbers[4][2]); 
-  led(5,numbers[5][0],numbers[5][1],numbers[5][2]);  
+  for(int i = 0; i < continentSize; i++){
+    led(i,numbers[i][0],numbers[i][1],numbers[i][2]); 
+    setHeight(i,numbers[i][3]);
+  }
 
   //Fade to the color TO BE SET for each continent
   if (millis() > counter + 1000/updatesPerSecond) {
