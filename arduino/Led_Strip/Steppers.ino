@@ -21,7 +21,7 @@ void setupSteppers(){
   steppers[0].directionPort = 2;
   steppers[0].PWMPort = 4;
   steppers[0].caliPort = 8;
-  
+
   steppers[1].directionPort = 5;
   steppers[1].PWMPort = 6;
   steppers[1].caliPort = 7;
@@ -56,8 +56,11 @@ void rotate(int stepper,boolean down,int steps){ //rotate in direction right == 
 }
 
 void calib(int stepper){ //Set the Steppermotor to bottom most position
-  while(!bottom(stepper)){
-    rotate(stepper,DOWN,1);//TODO is right the down direction
+  for(int i = 0; i < MAXHEIGHTINSTEPS * 1.2; i++){
+    if(!bottom(stepper)){
+      rotate(stepper,DOWN,1);//TODO is right the down direction
+    }else
+      break; 
   }
   steppers[stepper].height = 0;
   upFromBottom(stepper);
@@ -68,15 +71,18 @@ boolean bottom(int stepper){
 }
 
 void upFromBottom(int stepper){
-   steppers[stepper].height = 0;
+  steppers[stepper].height = 0;
   digitalWrite(steppers[stepper].directionPort, LOW); //check if this is right
-  while(bottom(stepper)){
+  for(int i = 0; i < MAXHEIGHTINSTEPS * 1.2; i++){
+  if(bottom(stepper)){
     digitalWrite(steppers[stepper].PWMPort, LOW);
     delayMicroseconds(STEPPERDELAY);
     digitalWrite(steppers[stepper].PWMPort, HIGH);
     delayMicroseconds(STEPPERDELAY);
     steppers[stepper].height += 1.0 / MAXHEIGHT;
-  } 
+  }else
+  break;
+  }
   Serial.println(steppers[stepper].height);
 }
 
@@ -87,5 +93,6 @@ void setHeight(int stepper,float height){
   steppers[stepper].height = height;
   rotate(stepper,steps > 0,abs(steps)); //TODO is direction correcct?  
 }
+
 
 
