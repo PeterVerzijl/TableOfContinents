@@ -105,13 +105,13 @@ void setup() {
   continents = new Continent[dataPoints.length];
   for (int j = 0; j < dataPoints.length; j++)
   {
-    continents[i] = new Continent(dataPoints[i].continentName, i + 1, i + 1, dataPoints[i]);
+    continents[j] = new Continent(dataPoints[j].continentName, j + 1, j + 1, dataPoints[j]);
   }
 
   // Initialize arduino
   arduino = new ArduinoInterface(this);
 }
-}
+
 void draw() {
   image(bg, 0, 0);
   drawGears();
