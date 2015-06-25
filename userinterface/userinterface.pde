@@ -29,6 +29,9 @@ ArduinoInterface arduino;
 String[] continentNames = {"Europe", "South America", "North America", "Africa", "Asia", "Ociania"};
 Continent[] continents = new Continent[6];
 
+// CalibrationScreen
+CalibrationScreen calibrationScreen;
+
 void setup() {
   size(1280, 720);
   
@@ -110,6 +113,9 @@ void setup() {
 
   // Initialize arduino
   arduino = new ArduinoInterface(this);
+  
+  // Initialize calibration screen
+  calibrationScreen = new CalibrationScreen();
 }
 
 void draw() {
@@ -136,6 +142,11 @@ void draw() {
   for (int i = 0; i < menuOpts.length; i++) {
     float x = menuOpts[i].rightside ? width-menuSize.x : 0;
     //rect(x, menuOpts[i].y-50, menuSize.x, menuSize.y);
+  }
+  
+  // Craw calibration screen if nessesary
+  if (calibrationScreen.active) {
+    calibrationScreen.draw();
   }
 }
 

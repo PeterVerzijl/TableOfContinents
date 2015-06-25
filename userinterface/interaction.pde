@@ -178,6 +178,10 @@ void updateData(menuOpt mo) {
 }
 
 void mousePressed() {
+  // Check if we are calibrating
+  if (calibrationScreen.active)
+    return;
+  
   PVector m = new PVector(mouseX, mouseY+50);
 
   for (int i = 0; i < menuOpts.length; i++) {

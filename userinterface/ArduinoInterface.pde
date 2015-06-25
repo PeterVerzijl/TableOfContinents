@@ -117,8 +117,11 @@ public class ArduinoInterface {
    */
   public void serialEvent(Serial port) {
     String s = port.readString();
-    if (s.equals("R")) {
-        sendString(lastMessage);
+    if (s.equals("R\n")) {
+      sendString(lastMessage);
+    }
+    else if (s.equals("READY\n")) {
+      calibrationScreen.active = false;
     }
     print(s);
   }
