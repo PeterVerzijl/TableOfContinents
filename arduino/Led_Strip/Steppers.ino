@@ -16,16 +16,6 @@ struct Stepper {
 
 Stepper steppers[AMOUNTSTEPPERS];
 
-typedef struct Steps Steps;
-
-struct Steps {
-  int steps;
-  boolean down;
-  boolean finished;
-};
-
-Steps steps[AMOUNTSTEPPERS];
-
 void setupSteppers(){
   //set how the steppers are connected //TODO add other steppers
   steppers[0].directionPort = 22;
@@ -84,10 +74,6 @@ void rotate(int stepper,boolean down,int steps){ //rotate in direction right == 
   }
 }
 
-void rotateMultiple(int []){
-
-}
-
 void calib(int stepper){ //Set the Steppermotor to bottom most position
   for(int i = 0; i < MAXHEIGHTINSTEPS * 1.2; i++){
     if(!bottom(stepper)){
@@ -128,6 +114,7 @@ void setHeight(int stepper,float height){
   }
 }
 
+<<<<<<< HEAD
 void setHeigthMultiple(int numbers[6][3]){
   Steps steps[AMOUNTSTEPPERS];
   for(int i = 0; i < AMOUNTSTEPPERS; i++){ //calculate the amount of steps all steppers have to move
@@ -280,6 +267,8 @@ void song(){
 
 
 
+=======
+>>>>>>> parent of c03b88a... added setting of height multiple continents
 
 
 
