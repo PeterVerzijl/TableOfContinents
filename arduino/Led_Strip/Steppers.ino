@@ -3,7 +3,7 @@
 #define MAXHEIGHT 100.0
 #define DOWN true
 #define UP false
-#define STEPPERDELAY 1000
+#define STEPPERDELAY 2000
 
 typedef struct Stepper Stepper;
 
@@ -28,29 +28,29 @@ Steps steps[AMOUNTSTEPPERS];
 
 void setupSteppers(){
   //set how the steppers are connected //TODO add other steppers
-  steppers[0].directionPort = 2;
-  steppers[0].PWMPort = 4;
-  steppers[0].caliPort = 8;
+  steppers[0].directionPort = 22;
+  steppers[0].PWMPort = 2;
+  steppers[0].caliPort = 30;
 
-  steppers[1].directionPort = 2;
-  steppers[1].PWMPort = 4;
-  steppers[1].caliPort = 8;
+  steppers[1].directionPort = 23;
+  steppers[1].PWMPort = 3;
+  steppers[1].caliPort = 31;
 
-  steppers[2].directionPort = 2;
+  steppers[2].directionPort = 24;
   steppers[2].PWMPort = 4;
-  steppers[2].caliPort = 8;
+  steppers[2].caliPort = 32;
 
-  steppers[3].directionPort = 2;
-  steppers[3].PWMPort = 4;
-  steppers[3].caliPort = 8;
+  steppers[3].directionPort = 25;
+  steppers[3].PWMPort = 5;
+  steppers[3].caliPort = 33;
 
-  steppers[4].directionPort = 2;
-  steppers[4].PWMPort = 4;
-  steppers[4].caliPort = 8;
+  steppers[4].directionPort = 26;
+  steppers[4].PWMPort = 6;
+  steppers[4].caliPort = 34;
 
-  steppers[5].directionPort = 2;
-  steppers[5].PWMPort = 4;
-  steppers[5].caliPort = 8;
+  steppers[5].directionPort = 27;
+  steppers[5].PWMPort = 7;
+  steppers[5].caliPort = 35;
 
 
 
@@ -131,9 +131,9 @@ void setHeight(int stepper,float height){
 void setHeigthMultiple(int numbers[6][3]){
   Steps steps[AMOUNTSTEPPERS];
   for(int i = 0; i < AMOUNTSTEPPERS; i++){ //calculate the amount of steps all steppers have to move
-  steppers[i].height = numbers[i][3]; //set height of steppers
+    steppers[i].height = numbers[i][3]; //set height of steppers
     int amountOfSteps = int(((steppers[i].height - numbers[i][3]) / MAXHEIGHT) * MAXHEIGHTINSTEPS);
-      steps[i].steps = abs(amountOfSteps); //steps
+    steps[i].steps = abs(amountOfSteps); //steps
     steps[i].down = amountOfSteps > 0; //direction
     if(amountOfSteps ==0) //if stepper does not have to move
       steps[i].finished = true;
@@ -196,6 +196,81 @@ int steppersfinished(){
 
   return finished;
 }
+
+typedef struct Tone Tone;
+
+struct Tone {
+  float freq;
+  float length;
+    float wait;
+};
+#define AMOUNTNOTES 8
+Tone tones[AMOUNTNOTES];
+void setSong(){
+  tones[0].freq = 660;
+  tones[0].length = 100;
+  tones[0].wait = 150;
+  tones[1].freq = 660;
+  tones[1].length = 100;
+  tones[1].wait = 300;
+  tones[2].freq = 660;
+  tones[2].length = 100;
+  tones[2].wait = 300;
+  tones[3].freq = 510;
+  tones[3].length = 100;
+  tones[3].wait = 100;
+  tones[4].freq = 660;
+  tones[4].length = 100;
+  tones[4].wait = 300;
+  tones[5].freq = 770;
+  tones[5].length = 100;
+  tones[5].wait = 550;
+  tones[6].freq = 380;
+  tones[6].length = 100;
+  tones[6].wait = 575;
+}
+void song(){
+
+  for(int i = 0; i < AMOUNTSTEPPERS; i++)  //set all in the middle
+    setHeight(i, 50);
+
+  for(int i = 0; i < AMOUNTNOTES; i++){
+    int country = int(random(6));
+    int amountofSteps = tones[i].length / ((1.0 / tones[i].freq) * pow(10.0,3));
+    boolean down;
+    if(steppers[country].height < MAXHEIGHT / 2)
+      down = false;
+    else
+      down = true;
+
+    for (int i = 0; i < amountofSteps; i++) {
+      if(steppers[country].height < 10 && down || steppers[country].height > MAXHEIGHT - 10 && !down)
+        down = !down;
+
+      if(down){
+        steppers[country].height -= 1.0 / MAXHEIGHT;
+        digitalWrite(steppers[country].directionPort, HIGH); //check if this is right
+      }else{
+        steppers[country].height += 1.0 / MAXHEIGHT;
+        digitalWrite(steppers[country].directionPort, LOW);
+      }
+
+      if(!bottom(country)){
+        digitalWrite(steppers[country].PWMPort, LOW);
+        delayMicroseconds(1.0 / tones[i].freq * pow(10,6));
+        digitalWrite(steppers[country].PWMPort, HIGH);
+        delayMicroseconds(1.0 / tones[i].freq * pow(10,6));
+      }
+      else{
+        upFromBottom(country);
+        break;
+      }
+    }
+  }
+}
+
+
+
 
 
 
