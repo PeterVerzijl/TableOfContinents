@@ -103,7 +103,7 @@ void setup() {
 
   DataPoint[] dataPoints = dl.load("data.csv");
   continents = new Continent[dataPoints.length];
-  for (int i = 0; i < dataPoints.length; i++)
+  for (int j = 0; j < dataPoints.length; j++)
   {
     continents[i] = new Continent(dataPoints[i].continentName, i + 1, i + 1, dataPoints[i]);
   }
@@ -111,7 +111,7 @@ void setup() {
   // Initialize arduino
   arduino = new ArduinoInterface(this);
 }
-
+}
 void draw() {
   image(bg, 0, 0);
   drawGears();
