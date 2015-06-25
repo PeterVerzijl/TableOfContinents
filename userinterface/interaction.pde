@@ -42,6 +42,8 @@ void updateData(menuOpt mo) {
         for (int j = 0; j < continents.length; j++) stats[j] = continents[j].dataPoint.sexLifeSatisfaction;
         float max = max(stats);
         float min = min(stats);
+        scaleMin=min;
+        scaleMax=max;
 
         asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
         eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
@@ -49,6 +51,8 @@ void updateData(menuOpt mo) {
         namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
+
+        scale = sexS;
 
         arduino.SetColors(new color[] {
           asic, eurc, samc, namc, afrc, ocec
@@ -65,6 +69,8 @@ void updateData(menuOpt mo) {
         for (int j = 0; j < continents.length; j++) stats[j] = continents[j].dataPoint.UFOSightings;
         float max = max(stats);
         float min = min(stats);
+        scaleMin=min;
+        scaleMax=max;
 
         asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
         eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
@@ -72,6 +78,8 @@ void updateData(menuOpt mo) {
         namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
+
+        scale = ufoS;
 
         arduino.SetColors(new color[] {
           asic, eurc, samc, namc, afrc, ocec
@@ -88,6 +96,8 @@ void updateData(menuOpt mo) {
         for (int j = 0; j < continents.length; j++) stats[j] = continents[j].dataPoint.homocideRate;
         float max = max(stats);
         float min = min(stats);
+        scaleMin=min;
+        scaleMax=max;
 
         asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
         eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
@@ -95,6 +105,8 @@ void updateData(menuOpt mo) {
         namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
+
+        scale = homiS;
 
         arduino.SetColors(new color[] {
           asic, eurc, samc, namc, afrc, ocec
@@ -111,6 +123,8 @@ void updateData(menuOpt mo) {
         for (int j = 0; j < continents.length; j++) stats[j] = continents[j].dataPoint.drugRelatedDeaths;
         float max = max(stats);
         float min = min(stats);
+        scaleMin=min;
+        scaleMax=max;
 
         asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
         eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
@@ -119,9 +133,12 @@ void updateData(menuOpt mo) {
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
 
+        scale = drugS;
+
         arduino.SetColors(new color[] {
           asic, eurc, samc, namc, afrc, ocec
-        });
+        }
+        );
 
         return;
       }
@@ -133,6 +150,8 @@ void updateData(menuOpt mo) {
         for (int j = 0; j < continents.length; j++) stats[j] = continents[j].dataPoint.GDP;
         float max = max(stats);
         float min = min(stats);
+        scaleMin=min;
+        scaleMax=max;
 
         asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
         eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
@@ -140,6 +159,8 @@ void updateData(menuOpt mo) {
         namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
+
+        scale = gdpS;
 
         arduino.SetColors(new color[] {
           asic, eurc, samc, namc, afrc, ocec
@@ -158,6 +179,8 @@ void updateData(menuOpt mo) {
         for (int j = 0; j < continents.length; j++) stats[j] = continents[j].dataPoint.overweight;
         float max = max(stats);
         float min = min(stats);
+        scaleMin=min;
+        scaleMax=max;
 
         asic = lerpColor(c1, c2, norm(stats[4], min, max));//4
         eurc = lerpColor(c1, c2, norm(stats[3], min, max));//3
@@ -165,6 +188,8 @@ void updateData(menuOpt mo) {
         namc = lerpColor(c1, c2, norm(stats[2], min, max));//2
         afrc = lerpColor(c1, c2, norm(stats[1], min, max));//1
         ocec = lerpColor(c1, c2, norm(stats[0], min, max));//0
+
+        scale = overS;
 
         arduino.SetColors(new color[] {
           asic, eurc, samc, namc, afrc, ocec

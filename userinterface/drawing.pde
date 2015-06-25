@@ -10,23 +10,24 @@ void drawTintedImage(PImage img, color col){
 }
 
 void drawScale(){
-  image(scale, 0, 0);
+  image(scale, 1000, 100);
   
-  fill(0, 255*.3);
+  textFont(light24);
+  
+  String legend = str(scaleMin) + " — " + str(scaleMax);
+  
+  float tw = textWidth(legend);
+  
+  
+  fill(0, 255*.5);
   noStroke();
-  rect(1030, 140, 80, 40);
-  rect(1260-80, 140, 80, 40);
+  rect(1100-tw/2-10, 150-10, tw+20, 25+20);
+  
+  textAlign(CENTER, TOP);
   fill(255);
   
-  textAlign(LEFT, TOP);
-  textFont(bold36);
-  float tw = textWidth(str(scaleMin));
-  text(scaleMin, 1030, 140);
+  text(legend, 1100, 150);
   
-  
-  textAlign(RIGHT, TOP);
-  tw = textWidth(str(scaleMin));
-  text(scaleMax, 1260, 140);
 }
 
 void drawDebugOutline() {

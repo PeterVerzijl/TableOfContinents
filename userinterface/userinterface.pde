@@ -3,6 +3,7 @@ PImage eur, sam, nam, oce, afr, asi;
 color eurc, samc, namc, ocec, afrc, asic;
 PImage out;
 PImage scale;
+PImage sexS, overS, homiS, gdpS, ufoS, drugS;
 PImage barleft;
 PImage barright;
 PFont bold36; // Stats head
@@ -26,7 +27,9 @@ ArduinoInterface arduino;
 
 // Continents
 // Six continents: europe, south america, north america, africa, asia.
-String[] continentNames = {"Europe", "South America", "North America", "Africa", "Asia", "Ociania"};
+String[] continentNames = {
+  "Europe", "South America", "North America", "Africa", "Asia", "Ociania"
+};
 Continent[] continents = new Continent[6];
 
 // CalibrationScreen
@@ -34,7 +37,7 @@ CalibrationScreen calibrationScreen;
 
 void setup() {
   size(1280, 720);
-  
+
   bg = loadImage("bg.png");
   buff = createGraphics(width, height);
   barleft = loadImage("barleft.png");
@@ -55,7 +58,14 @@ void setup() {
   asic = color(0, 250, 250);
 
   out = loadImage("outline.png");
-  scale = loadImage("scale.png");
+  scale = loadImage("overS.png");
+
+  sexS = loadImage("sexS.png");
+  overS = loadImage("overS.png");
+  homiS = loadImage("homiS.png");
+  gdpS = loadImage("gdpS.png");
+  ufoS = loadImage("ufoS.png");
+  drugS = loadImage("drugS.png");
 
   bold36 = loadFont("SourceSansPro-Bold-36.vlw");
   light18 = loadFont("SourceSansPro-Light-18.vlw");
@@ -91,11 +101,11 @@ void setup() {
 
   // Fill continents array with continents
   DataPoint[] points = dl.load("data.csv");
-  for(int i = 0; i < continents.length; i++)
+  for (int i = 0; i < continents.length; i++)
   {
-      continents[i] = new Continent(
-        continentNames[i], i + 1, i + 1, 
-        points[i]);
+    continents[i] = new Continent(
+    continentNames[i], i + 1, i + 1, 
+    points[i]);
   }
   scaleMin = 0;
   scaleMax = 100;
