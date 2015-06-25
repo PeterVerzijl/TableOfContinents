@@ -16,6 +16,16 @@ struct Stepper {
 
 Stepper steppers[AMOUNTSTEPPERS];
 
+typedef struct Steps Steps;
+
+struct Steps {
+  int steps;
+  boolean down;
+  boolean finished;
+};
+
+Steps steps[AMOUNTSTEPPERS];
+
 void setupSteppers(){
   //set how the steppers are connected //TODO add other steppers
   steppers[0].directionPort = 2;
@@ -52,7 +62,7 @@ void setupSteppers(){
     pinMode(steppers[i].caliPort, INPUT);
     calib(i);
   }
-   Serial.write("READY");
+  Serial.write("READY");
 }
 
 void rotate(int stepper,boolean down,int steps){ //rotate in direction right == true; left == false and for x amount of steps
@@ -72,6 +82,10 @@ void rotate(int stepper,boolean down,int steps){ //rotate in direction right == 
       break;
     }
   }
+}
+
+void rotateMultiple(int []){
+
 }
 
 void calib(int stepper){ //Set the Steppermotor to bottom most position
@@ -113,6 +127,83 @@ void setHeight(int stepper,float height){
     rotate(stepper,steps > 0,abs(steps)); //TODO is direction correcct?  
   }
 }
+
+void setHeigthMultiple(int numbers[6][3]){
+  Steps steps[AMOUNTSTEPPERS];
+  for(int i = 0; i < AMOUNTSTEPPERS; i++){ //calculate the amount of steps all steppers have to move
+  steppers[i].height = numbers[i][3]; //set height of steppers
+    int amountOfSteps = int(((steppers[i].height - numbers[i][3]) / MAXHEIGHT) * MAXHEIGHTINSTEPS);
+      steps[i].steps = abs(amountOfSteps); //steps
+    steps[i].down = amountOfSteps > 0; //direction
+    if(amountOfSteps ==0) //if stepper does not have to move
+      steps[i].finished = true;
+    else
+      steps[i].finished = false;
+  }
+  for(int q = 0; q < AMOUNTSTEPPERS; q++){ //set direction of all steppermotors
+    if(steps[q].down)
+      digitalWrite(steppers[q].directionPort, HIGH);
+    else
+      digitalWrite(steppers[q].directionPort, LOW);
+  }
+  for(int i = 0; i < MAXHEIGHTINSTEPS * 1.2; i++){ //the maximum amount of steps all steppers can take
+    if(steppersfinished() >= AMOUNTSTEPPERS){ //if not all steppers have finished moving
+      for(int q = 0; q < AMOUNTSTEPPERS; q++){ //for all steppers
+        if(!steps[q].finished && steps[q].steps > 0){ //if stepper has not finished movement
+          if(!bottom(q)){//steppers has not reached the bottom
+            steps[q].steps--;
+            digitalWrite(steppers[q].PWMPort, LOW);
+          }
+          else{ //if reached the botttom
+            steps[q].finished = true;
+            upFromBottom(q);
+            break;
+          }
+        }
+        else{ //if finished with taking steps
+          steps[q].finished = true;
+          break;
+        }
+      }
+      delayMicroseconds(STEPPERDELAY);
+      for(int q = 0; q < AMOUNTSTEPPERS; q++){
+        if(!steps[q].finished && steps[q].steps > 0){ //if stepper has not finished movement
+          if(!bottom(q)){
+            digitalWrite(steppers[q].PWMPort, HIGH);
+          }
+          else{
+            steps[q].finished = true;
+            upFromBottom(q);
+            continue;
+          }
+        }
+        else{
+          steps[q].finished = true;
+          continue;
+        }
+      }
+      delayMicroseconds(STEPPERDELAY);
+    }
+    else
+      break;
+  }
+}
+
+int steppersfinished(){
+  int finished;
+  for(int i = 0; i < AMOUNTSTEPPERS; i++)
+    if(steps[i].finished) finished++;
+
+  return finished;
+}
+
+
+
+
+
+
+
+
 
 
 
