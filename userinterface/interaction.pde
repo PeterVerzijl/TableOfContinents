@@ -54,10 +54,7 @@ void updateData(menuOpt mo) {
 
         scale = sexS;
 
-        arduino.SetColors(new color[] {
-          asic, eurc, samc, namc, afrc, ocec
-        }
-        );
+        arduino.SetColors(new color[] {asic, eurc, namc, samc, afrc, ocec});
 
         return;
       }
@@ -81,10 +78,7 @@ void updateData(menuOpt mo) {
 
         scale = ufoS;
 
-        arduino.SetColors(new color[] {
-          asic, eurc, samc, namc, afrc, ocec
-        }
-        );
+        arduino.SetColors(new color[] {asic, eurc, namc, samc, afrc, ocec});
 
         return;
       }
@@ -108,10 +102,7 @@ void updateData(menuOpt mo) {
 
         scale = homiS;
 
-        arduino.SetColors(new color[] {
-          asic, eurc, samc, namc, afrc, ocec
-        }
-        );
+        arduino.SetColors(new color[] {asic, eurc, namc, samc, afrc, ocec});
 
         return;
       }
@@ -135,10 +126,7 @@ void updateData(menuOpt mo) {
 
         scale = drugS;
 
-        arduino.SetColors(new color[] {
-          asic, eurc, samc, namc, afrc, ocec
-        }
-        );
+        arduino.SetColors(new color[] {asic, eurc, namc, samc, afrc, ocec});
 
         return;
       }
@@ -162,10 +150,7 @@ void updateData(menuOpt mo) {
 
         scale = gdpS;
 
-        arduino.SetColors(new color[] {
-          asic, eurc, samc, namc, afrc, ocec
-        }
-        );
+        arduino.SetColors(new color[] {asic, eurc, namc, samc, afrc, ocec});
 
         println(norm(stats[5], min, max), norm(stats[3], min, max), norm(stats[1], min, max), norm(stats[2], min, max), norm(stats[0], min, max), norm(stats[4], min, max));
 
@@ -191,10 +176,7 @@ void updateData(menuOpt mo) {
 
         scale = overS;
 
-        arduino.SetColors(new color[] {
-          asic, eurc, samc, namc, afrc, ocec
-        }
-        );
+        arduino.SetColors(new color[] {asic, eurc, namc, samc, afrc, ocec});
 
         return;
       }

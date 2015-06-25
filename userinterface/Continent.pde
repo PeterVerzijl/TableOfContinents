@@ -6,15 +6,11 @@
 public class Continent {
 
     public String name = "";
-    public int stepperCode = 0;
-    public int ledCode = 0;
     public DataPoint dataPoint;
     
-    public Continent(String name, int stepperCode, int ledCode, DataPoint dataPoint) 
+    public Continent(String name, DataPoint dataPoint) 
     {
         this.name = name;
-        this.stepperCode = stepperCode;
-        this.ledCode = ledCode;
         this.dataPoint = dataPoint;
     }
 }

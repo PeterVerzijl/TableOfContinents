@@ -76,6 +76,15 @@ void setup() {
   int y = 250;
   int dy = 70;
 
+  // Fill continents array with continents
+  DataPoint[] points = dl.load("data.csv");
+  for (int i = 0; i < continents.length; i++)
+  {
+    continents[i] = new Continent(
+    continentNames[i], 
+    points[i]);
+  }
+
   menuOpts[0] = new menuOpt(y+dy*0, "CIGARETTES", false, false);
   menuOpts[1] = new menuOpt(y+dy*1, "OPIATES", false, false);
   menuOpts[2] = new menuOpt(y+dy*2, "AMPHETAMINE", false, true);
@@ -90,36 +99,20 @@ void setup() {
   menuOpts[10] = new menuOpt(y+dy*4, "GDP PER CAPITA", true, true);
   menuOpts[11] = new menuOpt(y+dy*5, "OVERWEIGHT", true, false);
 
-
-  statsOpts[0] = new statsOpt(555, 325, "12.2%", "EUROPE");
-  statsOpts[1] = new statsOpt(570, 480, "64.8%", "AFRICA");
-  statsOpts[2] = new statsOpt(790, 330, "23.5%", "ASIA");
-  statsOpts[3] = new statsOpt(385, 520, "34.0%", "SOUTH AMERICA");
-  statsOpts[4] = new statsOpt(350, 315, "14.2%", "NORTH AMERICA");
-  statsOpts[5] = new statsOpt(855, 560, "47.1%", "OCEANIA");
+  statsOpts[2] = new statsOpt(790, 330, continents[0].dataPoint.amphetamine+"%", "ASIA");
+  statsOpts[0] = new statsOpt(555, 325, continents[1].dataPoint.amphetamine+"%", "EUROPE");
+  statsOpts[4] = new statsOpt(350, 315, continents[3].dataPoint.amphetamine+"%", "NORTH AMERICA");
+  statsOpts[3] = new statsOpt(385, 520, continents[2].dataPoint.amphetamine+"%", "SOUTH AMERICA");
+  statsOpts[1] = new statsOpt(570, 480, continents[4].dataPoint.amphetamine+"%", "AFRICA");
+  statsOpts[5] = new statsOpt(855, 560, continents[5].dataPoint.amphetamine+"%", "OCEANIA");
   statsOpts[6] = new statsOpt(0, 100, "DRUG USE", "PER CAPITA");
 
-  // Fill continents array with continents
-  DataPoint[] points = dl.load("data.csv");
-  for (int i = 0; i < continents.length; i++)
-  {
-    continents[i] = new Continent(
-    continentNames[i], i + 1, i + 1, 
-    points[i]);
-  }
   scaleMin = 0;
   scaleMax = 100;
   scaleC1 = color(235, 235, 235);
   scaleC2 = color(123, 34, 56);
   scalePos1 = new PVector(1030, 140);
   scalePos2 = new PVector(1260, 140);
-
-  DataPoint[] dataPoints = dl.load("data.csv");
-  continents = new Continent[dataPoints.length];
-  for (int j = 0; j < dataPoints.length; j++)
-  {
-    continents[j] = new Continent(dataPoints[j].continentName, j + 1, j + 1, dataPoints[j]);
-  }
 
   // Initialize arduino
   arduino = new ArduinoInterface(this);
