@@ -93,6 +93,7 @@ void setup() {
       continents[i] = new Continent(
         continentNames[i], i + 1, i + 1, 
         points[i]);
+  }
   scaleMin = 0;
   scaleMax = 100;
   scaleC1 = color(235, 235, 235);

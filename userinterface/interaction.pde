@@ -149,7 +149,6 @@ void updateData(menuOpt mo) {
         println(norm(stats[5], min, max), norm(stats[3], min, max), norm(stats[1], min, max), norm(stats[2], min, max), norm(stats[0], min, max), norm(stats[4], min, max));
 
         return;
-        break;
       }
 
       if (mo.text.equals("OVERWEIGHT")) {

@@ -26,9 +26,14 @@ public class ArduinoInterface {
       println("Error, no arduino found!");
     }
     else {
+      try {
       String arduinoPort = Serial.list()[0];
       serial = new Serial(applet, arduinoPort, 9800);
       serial.bufferUntil('\n');
+      } catch (Exception e) 
+      {
+        println(e);
+      }
     }
   }
 
