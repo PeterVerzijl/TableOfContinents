@@ -1,7 +1,0 @@
-Continents;Drug related deaths (per million population);GDP per capita (US$);Population;UFO sightings;Homicide rate (per 100.000);Sexlife Satisfaction (2006);Overweighted population (%)
-Asia;115.8;2941;4164252000;54;369;37.13;24.2
-Europe;220.7;25434;1022234000;162;192;42.80;55.6
-South America;55.3;9024;392555000;20;905;42.00;57.9
-North America;161.6;32007;542056000;2354;1745;53.00;73.9
-Africa;89.1;1576;738199000;4;1159;58.50;28.9
-Oceania;123.0;39052;29127000;20;290;42.50;63.3
