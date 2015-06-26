@@ -14,7 +14,17 @@ void drawScale(){
   
   textFont(light24);
   
-  String legend = str(scaleMin) + " — " + str(scaleMax);
+  String perc = (menuOpts[6].selected || menuOpts[11].selected) ? "%" : "";
+  if(menuOpts[10].selected) perc = "$";
+  String context = "";
+  if(menuOpts[6].selected) context = " SATISFIED"; 
+  if(menuOpts[7].selected) context = " UFOS SEEN"; 
+  if(menuOpts[8].selected) context = " HOMICIDES"; 
+  if(menuOpts[9].selected) context = " DEATHS";
+  if(menuOpts[10].selected) context = " GDP";
+  if(menuOpts[11].selected) context = " OVERWEIGHT";
+  
+  String legend = str(scaleMin) + perc + " — " + str(scaleMax) + perc + context;
   
   float tw = textWidth(legend);
   

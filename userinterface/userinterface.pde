@@ -37,6 +37,7 @@ CalibrationScreen calibrationScreen;
 
 void setup() {
   size(1280, 720);
+  noCursor();
 
   bg = loadImage("bg.png");
   buff = createGraphics(width, height);
@@ -116,7 +117,7 @@ void setup() {
 
   // Initialize arduino
   arduino = new ArduinoInterface(this);
-  
+
   // Initialize calibration screen
   calibrationScreen = new CalibrationScreen();
 }
@@ -146,7 +147,7 @@ void draw() {
     float x = menuOpts[i].rightside ? width-menuSize.x : 0;
     //rect(x, menuOpts[i].y-50, menuSize.x, menuSize.y);
   }
-  
+
   // Craw calibration screen if nessesary
   if (calibrationScreen.active) {
     calibrationScreen.draw();
